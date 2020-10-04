@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "766287813906",
+    "firebase_url": "https://my-assistant-2-f03a0.firebaseio.com",
+    "project_id": "my-assistant-2-f03a0",
+    "storage_bucket": "my-assistant-2-f03a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766287813906:android:b4a4942799c3f5618527cb",
+        "android_client_info": {
+          "package_name": "com.omarahmed.myassistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766287813906-7k20ei7fg3nt1vap126i1smphdciiqrq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZolGYspz-WGDiYjJUkCgTqILgqIruG10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766287813906-7k20ei7fg3nt1vap126i1smphdciiqrq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

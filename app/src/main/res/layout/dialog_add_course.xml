@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:background="@drawable/bg_dialog_add_course">
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fill_out_to_add_a_new_course"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"/>
+
+                <EditText
+                    android:id="@+id/courseName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/editTextDialog"
+                    android:hint="@string/course_name"
+                    android:inputType="text"
+                    android:autofillHints="" />
+
+                <EditText
+                    android:id="@+id/courseCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/editTextDialog"
+                    android:hint="@string/course_code"
+                    android:inputType="textCapCharacters"
+                    android:autofillHints="" />
+
+                <EditText
+                    android:id="@+id/creditHours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/editTextDialog"
+                    android:hint="@string/credit_hours"
+                    android:inputType="number"
+                    android:autofillHints="" />
+
+
+                <EditText
+                    android:id="@+id/lecturerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/editTextDialog"
+                    android:hint="@string/lecturer_name"
+                    android:inputType="text"
+                    android:autofillHints="" />
+
+                <Button
+                    android:id="@+id/btnAddCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/save_btn_bg"
+                    android:enabled="false"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/add"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/btnDismissAddCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/cancel"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

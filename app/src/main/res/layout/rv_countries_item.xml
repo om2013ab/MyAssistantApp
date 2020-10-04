@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="countriesInfo"
+            type="com.omarahmed.myassistant.data.remote.CountriesResponse.Countries.CountriesInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:ellipsize="end"
+            android:textColor="@android:color/black"
+            android:singleLine="true"
+            android:layout_marginStart="8dp"
+            android:text="@{countriesInfo.countryName}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toStartOf="@+id/totalHolidaysTxt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/totalHolidays"
+            app:layout_constraintTop_toTopOf="@id/totalHolidaysTxt"
+            tools:text="Yemendasdasdasd dfgdfgdfgdfgdf dfgdfg a" />
+
+        <TextView
+            android:id="@+id/totalHolidaysTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/total_holidays"/>
+        <TextView
+            android:id="@+id/totalHolidays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            tools:text="22"
+            android:text="@{String.valueOf(countriesInfo.totalHolidays)}"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/totalHolidaysTxt"
+            app:layout_constraintEnd_toEndOf="@id/totalHolidaysTxt"
+            app:layout_constraintTop_toBottomOf="@id/totalHolidaysTxt"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_color"
+            android:layout_below="@id/totalHolidays"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/totalHolidays"
+            android:layout_marginTop="8dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

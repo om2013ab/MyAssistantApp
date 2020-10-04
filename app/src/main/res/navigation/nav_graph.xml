@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.omarahmed.myassistant.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_assignmentFragment"
+            app:destination="@id/assignmentFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_testFragment"
+            app:destination="@id/testFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/assignmentFragment"
+        android:name="com.omarahmed.myassistant.assignment.AssignmentFragment"
+        android:label="fragment_assignment"
+        tools:layout="@layout/fragment_assignment" >
+        <action
+            android:id="@+id/action_assignmentFragment_to_showAssignmentFragment"
+            app:destination="@id/showAssignmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.omarahmed.myassistant.test.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" >
+        <action
+            android:id="@+id/action_testFragment_to_showTestFragment"
+            app:destination="@id/showTestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayFragment"
+        android:name="com.omarahmed.myassistant.holiday.HolidayFragment"
+        android:label="fragment_holiday"
+        tools:layout="@layout/fragment_holiday" >
+        <action
+            android:id="@+id/action_holidayFragment_to_countriesFragment"
+            app:destination="@id/countriesFragment" />
+        <argument android:name="pickedCountry"
+            app:argType="com.omarahmed.myassistant.data.remote.CountriesResponse$Countries$CountriesInfo"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+    </fragment>
+    <fragment
+        android:id="@+id/timetableFragment"
+        android:name="com.omarahmed.myassistant.timetable.TimetableFragment"
+        android:label="fragment_timetable"
+        tools:layout="@layout/fragment_timetable" >
+        <action
+            android:id="@+id/action_timetableFragment_to_timetableUpdateFragment"
+            app:destination="@id/timetableUpdateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showAssignmentFragment"
+        android:name="com.omarahmed.myassistant.assignment.ShowAssignmentFragment"
+        android:label="fragment_show_assignment"
+        tools:layout="@layout/fragment_show_assignment" >
+        <argument
+            android:name="currentAssignment"
+            app:argType="com.omarahmed.myassistant.data.models.AssignmentInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/showTestFragment"
+        android:name="com.omarahmed.myassistant.test.ShowTestFragment"
+        android:label="fragment_show_test">
+        <argument
+            android:name="currentTest"
+            app:argType="com.omarahmed.myassistant.data.models.TestInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/timetableUpdateFragment"
+        android:name="com.omarahmed.myassistant.timetable.TimetableUpdateFragment"
+        android:label="fragment_timetable_update"
+        tools:layout="@layout/fragment_timetable_update" >
+        <argument
+            android:name="editSchedule"
+            app:argType="com.omarahmed.myassistant.data.models.TimetableInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/countriesFragment"
+        android:name="com.omarahmed.myassistant.holiday.countries.CountriesFragment"
+        android:label="fragment_countries"
+        tools:layout="@layout/fragment_countries" >
+        <action
+            android:id="@+id/action_countriesFragment_to_holidayFragment"
+            app:destination="@id/holidayFragment" />
+    </fragment>
+</navigation>

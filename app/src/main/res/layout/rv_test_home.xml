@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="testInfo"
+            type="com.omarahmed.myassistant.data.models.TestInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/code_test"
+                android:layout_width="130dp"
+                android:layout_height="100dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:gravity="center"
+                android:text="@{testInfo.code}"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="10dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                tools:text="MGM3215" />
+
+            <TextView
+                android:id="@+id/date_test"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom"
+                android:background="@color/test_code_color"
+                dateFormat="@{testInfo.date}"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins"
+                android:textColor="@android:color/white"
+                tools:text="Jan 18, 2020" />
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="@id/cardView"
+            app:srcCompat="@drawable/ic_calendar_test" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

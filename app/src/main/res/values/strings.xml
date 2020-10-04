@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">My Assistant</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+
+    <string name="courses">Courses</string>
+    <string name="add_course">add course</string>
+    <string name="course_name">Course name</string>
+    <string name="course_code">Course code</string>
+    <string name="credit_hours">Credit hours</string>
+    <string name="lecturer_name">Lecturer name</string>
+    <string name="add">add</string>
+    <string name="cancel">Cancel</string>
+    <string name="home">Home</string>
+    <string name="timetable">Timetable</string>
+    <string name="assignments">Assignments</string>
+    <string name="tests">Tests</string>
+    <string name="holidays">Holidays</string>
+    <string name="about_the_course">About the course</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="deadline">Deadline</string>
+    <string name="about_the_assignment">About the assignment</string>
+    <string name="short_description">Short description</string>
+    <string name="notification">Notification</string>
+    <string name="adding_a_new_assignment">Adding a new assignment</string>
+    <string name="notification_message">You will be notified one day before the deadline of the assignment</string>
+    <string name="delete">Delete</string>
+    <string name="delete_all">Delete all</string>
+    <string name="fill_out_to_add_a_new_course">Fill out to add a new course</string>
+    <string name="date">Date</string>
+    <string name="chapters_recovered">Chapters recovered</string>
+    <string name="time">Time</string>
+    <string name="adding_a_new_test">Adding a new test</string>
+    <string name="about_the_test">About the test</string>
+    <string name="notification_time">You will be notified two days before the test day</string>
+    <string name="there_is_no_assignment">There is no assignment</string>
+    <string name="press_to_add_a_new_assignment">Press + to add a new assignment</string>
+    <string name="press_to_add_a_new_test">Press + to add a new test</string>
+    <string name="there_is_no_test">There is no test</string>
+    <string name="adding_a_new_schedule">Adding a new schedule</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="venue">Venue</string>
+    <string name="divider">-</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="total_holidays">Total holidays</string>
+</resources>
