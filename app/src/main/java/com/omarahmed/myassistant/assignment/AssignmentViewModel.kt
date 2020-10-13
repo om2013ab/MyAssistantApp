@@ -22,9 +22,6 @@ class AssignmentViewModel(application:Application): AndroidViewModel(application
     val noAssignment:LiveData<Boolean>
         get() = _noAssignment
 
-
-
-
     init {
         repository = AssignmentRepository(dao)
         getAllAssignment = repository.getAllAssignment
