@@ -2,10 +2,10 @@ package com.omarahmed.myassistant.utils
 
 import android.text.Editable
 import android.text.TextWatcher
-import com.omarahmed.myassistant.databinding.DialogAddAssignmentBinding
 import com.omarahmed.myassistant.databinding.DialogAddCourseBinding
 import com.omarahmed.myassistant.databinding.DialogAddSchedualBinding
-import com.omarahmed.myassistant.databinding.DialogAddTestBinding
+import com.omarahmed.myassistant.databinding.FragmentAddAssignmentBinding
+import com.omarahmed.myassistant.databinding.FragmentAddTestBinding
 
 
 abstract class TextWatcher : TextWatcher {
@@ -32,12 +32,13 @@ abstract class TextWatcher : TextWatcher {
             }
 
         }
-        fun textChangedAssignment(view:DialogAddAssignmentBinding){
+        fun textChangedAssignment(view:FragmentAddAssignmentBinding){
             val onTextChanged = object : com.omarahmed.myassistant.utils.TextWatcher() {
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     view.btnAdd.isEnabled = view.codeAssignment.text.isNotEmpty()
                             && view.deadline.text!!.isNotEmpty()
                             && view.description.text!!.isNotEmpty()
+
                 }
             }
             view.apply {
@@ -46,18 +47,18 @@ abstract class TextWatcher : TextWatcher {
                 description.addTextChangedListener(onTextChanged)
             }
         }
-        fun textChangedTest(view: DialogAddTestBinding){
+        fun textChangedTest(view: FragmentAddTestBinding){
             val onTextChanged = object : com.omarahmed.myassistant.utils.TextWatcher() {
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     view.btnAdd.isEnabled = view.codeTest.text.isNotEmpty()
-                            && view.dateTest.text!!.isNotEmpty()
-                            && view.timeTest.text!!.isNotEmpty()
+                            && view.testDate.text!!.isNotEmpty()
+                            && view.testTime.text!!.isNotEmpty()
                 }
             }
             view.apply {
                 codeTest.addTextChangedListener(onTextChanged)
-                dateTest.addTextChangedListener(onTextChanged)
-                timeTest.addTextChangedListener(onTextChanged)
+                testDate.addTextChangedListener(onTextChanged)
+                testTime.addTextChangedListener(onTextChanged)
             }
         }
         fun textChangedTimetable(view: DialogAddSchedualBinding){
