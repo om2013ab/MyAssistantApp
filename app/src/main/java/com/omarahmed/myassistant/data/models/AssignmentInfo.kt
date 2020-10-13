@@ -15,5 +15,6 @@ data class AssignmentInfo(
     val code:String,
     val deadLine: Date?,
     val description:String,
-    val notification: Boolean
+    val notification: Boolean,
+    val notificationDate: Date?
 ):Parcelable
