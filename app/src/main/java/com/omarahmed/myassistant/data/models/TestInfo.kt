@@ -15,5 +15,6 @@ data class TestInfo(
     val date: Date?,
     val time: Date?,
     val chapters:String,
-    val notification:Boolean
+    val notification:Boolean,
+    val notificationDate:Date?
 ):Parcelable
