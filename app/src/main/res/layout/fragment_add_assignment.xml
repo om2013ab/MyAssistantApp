@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -12,33 +12,33 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_dialog_add_course"
         android:focusableInTouchMode="true"
-        android:padding="0dp">
+        android:padding="0dp"
+        tools:context=".assignment.AddAssignmentFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow"
+            app:title="Adding assignment" />
 
         <ScrollView
             android:id="@+id/scrollView3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppins"
-                    android:text="@string/adding_a_new_assignment"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/codeLayout"
@@ -63,46 +63,46 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/deadlineLayout"
+                    style="@style/textInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/textInputStyle"
                     android:hint="@string/deadline">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/deadline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:textSize="15sp"
-                        android:focusable="false"
                         android:ellipsize="end"
-                        android:singleLine="true" />
+                        android:focusable="false"
+                        android:fontFamily="@font/poppins"
+                        android:singleLine="true"
+                        android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/descriptionLayout"
+                    style="@style/textInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/textInputStyle"
                     android:hint="@string/short_description">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:textSize="15sp"
                         android:ellipsize="end"
-                        android:lines="5"
-                        android:gravity="start|top" />
+                        android:fontFamily="@font/poppins"
+                        android:gravity="start|top"
+                        android:lines="4"
+                        android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="17dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="25dp"
-                    android:layout_marginEnd="19dp"
+                    android:layout_marginEnd="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -120,6 +120,26 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/notificationDateLayout"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/notification_date"
+                    android:visibility="gone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/notificationDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:focusable="false"
+                        android:fontFamily="@font/poppins"
+                        android:singleLine="true"
+                        android:textSize="15sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="match_parent"
@@ -128,8 +148,8 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/save_btn_bg"
-                    android:fontFamily="@font/poppins"
                     android:enabled="false"
+                    android:fontFamily="@font/poppins"
                     android:text="@string/add"
                     android:textColor="@android:color/white" />
 
@@ -138,11 +158,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="6dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="6dp"
-                    android:fontFamily="@font/poppins"
                     android:background="@android:color/transparent"
+                    android:fontFamily="@font/poppins"
                     android:text="@string/cancel"
                     android:textColor="@color/colorPrimary" />
             </LinearLayout>
