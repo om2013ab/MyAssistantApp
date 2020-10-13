@@ -35,9 +35,11 @@ class BindingAdapters {
 
         @BindingAdapter("dateFormat")
         @JvmStatic
-        fun setDateFormat(view: TextView, date: Date) {
+        fun setDateFormat(view: TextView, date: Date?) {
             val dateFormat = SimpleDateFormat(DATE_PATTERN, Locale.US)
-            view.text = dateFormat.format(date)
+            date?.let {
+                view.text = dateFormat.format(it)
+            }
         }
 
         @BindingAdapter("timeFormat")
