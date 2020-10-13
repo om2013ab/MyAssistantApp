@@ -104,57 +104,67 @@
                 android:fontFamily="@font/poppins"
                 android:textSize="16sp"
                 android:ellipsize="end"
-                android:lines="2"
+                android:lines="1"
                 android:gravity="start|top" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="19dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
-                    android:text="@string/notification"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/showSwitchTest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="@{args.currentTest.notification}"
-                    android:enabled="false" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/notification_time"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginTop="10dp" />
-
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/save_btn_bg"
-                android:fontFamily="@font/poppins"
-                android:visibility="invisible"
-                android:text="@string/save"
-                android:textColor="@android:color/white" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins"
+                android:text="@string/notification"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/showSwitchTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{args.currentTest.notification}"
+                android:enabled="false" />
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/notificationTestDateLayout"
+            style="@style/textInputStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:hint="@string/notification_date">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/notificationTestDate"
+                dateFormat="@{args.currentTest.notificationDate}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:enabled="false"
+                android:focusable="false"
+                android:fontFamily="@font/poppins"
+                android:singleLine="true"
+                android:textSize="15sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/save_btn_bg"
+            android:fontFamily="@font/poppins"
+            android:visibility="invisible"
+            android:text="@string/save"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 </layout>
