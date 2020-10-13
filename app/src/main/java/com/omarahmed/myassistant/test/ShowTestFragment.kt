@@ -1,14 +1,19 @@
 package com.omarahmed.myassistant.test
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.omarahmed.myassistant.R
+import com.omarahmed.myassistant.alarmmanager.ScheduleAlarm.Companion.cancelAlarm
+import com.omarahmed.myassistant.alarmmanager.ScheduleAlarm.Companion.startAlarm
 import com.omarahmed.myassistant.data.models.TestInfo
 import com.omarahmed.myassistant.databinding.FragmentShowTestBinding
 import com.omarahmed.myassistant.utils.Constants.Companion.DATE_PATTERN
@@ -23,6 +28,7 @@ class ShowTestFragment : Fragment() {
     private val args: ShowTestFragmentArgs by navArgs()
     private val testViewModel: TestViewModel by viewModels()
     private lateinit var binding: FragmentShowTestBinding
+    private var updateNotificationDate: Calendar? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,13 +38,25 @@ class ShowTestFragment : Fragment() {
         setupToolbar()
         binding.btnSave.setOnClickListener {
             updateTestInfo()
-            findNavController().navigateUp()
         }
         binding.showDate.setOnClickListener {
-            DatePicker.datePickerDialog(binding.showDate,requireContext())
+            DatePicker.datePickerDialog(binding.showDate, requireContext())
         }
         binding.showTime.setOnClickListener {
-            TimePicker.timePickerDialog(binding.showTime,requireContext())
+            TimePicker.timePickerDialog(binding.showTime, requireContext())
+        }
+
+        binding.notificationTestDateLayout.isVisible = binding.showSwitchTest.isChecked
+        binding.showSwitchTest.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                binding.notificationTestDateLayout.visibility = View.VISIBLE
+                binding.notificationTestDate.setOnClickListener {
+                    notificationDatePickerDialog()
+                }
+            } else {
+                binding.notificationTestDateLayout.visibility = View.GONE
+                binding.notificationTestDate.text!!.clear()
+            }
         }
         return binding.root
     }
@@ -50,8 +68,33 @@ class ShowTestFragment : Fragment() {
         var chapters = binding.showChapters.text.toString()
         if (chapters == "") chapters = "Not allocated"
         val notify = binding.showSwitchTest.isChecked
-        val updatedTest = TestInfo(args.currentTest.id,code,date,time,chapters,notify)
-        testViewModel.updateTest(updatedTest)
+        if (updateNotificationDate != null && updateNotificationDate?.time!!.after(date)) {
+            Toast.makeText(
+                requireContext(),
+                "you should choose a notification date that is before the test date (${binding.showDate.text.toString()})",
+                Toast.LENGTH_LONG
+            ).show()
+        } else {
+            if (binding.notificationTestDate.text!!.isEmpty() && binding.notificationTestDateLayout.isVisible) {
+                binding.notificationTestDateLayout.error = "This field is required"
+            } else {
+                val updatedTest = TestInfo(args.currentTest.id, code, date, time, chapters, notify, updateNotificationDate?.time)
+                testViewModel.updateTest(updatedTest)
+                cancelAlarm(requireContext(), args.currentTest.id)
+                updateNotificationDate?.let {
+                    startAlarm(
+                        requireContext(),
+                        args.currentTest.id,
+                        it.timeInMillis,
+                        code,
+                        binding.showDate.text.toString(),
+                        "test"
+                    )
+                }
+                findNavController().navigate(R.id.action_showTestFragment_to_testFragment)
+            }
+        }
+
     }
 
     private fun setupToolbar() {
@@ -62,14 +105,40 @@ class ShowTestFragment : Fragment() {
         }
     }
 
+    private fun notificationDatePickerDialog() {
+        val c = Calendar.getInstance()
+        DatePickerDialog(
+            requireContext(), { _, year, month, day ->
+                c.apply {
+                    set(Calendar.YEAR, year)
+                    set(Calendar.MONTH, month)
+                    set(Calendar.DAY_OF_MONTH, day)
+                    set(Calendar.HOUR, 9)
+                    set(Calendar.MINUTE, 0)
+                    set(Calendar.SECOND, 0)
+                    set(Calendar.MILLISECOND, 0)
+                }
+                updateNotificationDate = c
+                binding.notificationTestDate.setText(
+                    SimpleDateFormat(DATE_PATTERN, Locale.US).format(
+                        updateNotificationDate!!.time
+                    )
+                )
+            },
+            c.get(Calendar.YEAR),
+            c.get(Calendar.MONTH),
+            c.get(Calendar.DAY_OF_MONTH)
+        ).show()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.options_menu,menu)
+        inflater.inflate(R.menu.options_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.edit ->{
+        when (item.itemId) {
+            R.id.edit -> {
                 binding.apply {
                     btnSave.visibility = View.VISIBLE
                     codeLayout.isEnabled = true
@@ -79,12 +148,25 @@ class ShowTestFragment : Fragment() {
                     showSwitchTest.isEnabled = true
                 }
             }
-            R.id.delete ->{
+            R.id.delete -> {
                 testViewModel.deleteTest(args.currentTest)
-                findNavController().navigateUp()
-                Snackbar.make(requireView(),"Successfully deleted",Snackbar.LENGTH_LONG).apply {
-                    setAction("UNDO"){
+                findNavController().navigate(R.id.action_showTestFragment_to_testFragment)
+                Snackbar.make(requireView(), "Successfully deleted", Snackbar.LENGTH_LONG).apply {
+                    setAction("UNDO") {
                         testViewModel.insertTest(args.currentTest)
+                        args.currentTest.notificationDate?.let {
+                            val testDate = SimpleDateFormat(DATE_PATTERN, Locale.US).format(
+                                args.currentTest.notificationDate!!
+                            )
+                            startAlarm(
+                                requireContext(),
+                                args.currentTest.id,
+                                it.time,
+                                args.currentTest.code,
+                                testDate,
+                                "test"
+                            )
+                        }
                     }
                     show()
                 }
