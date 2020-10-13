@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_assignmentFragment_to_showAssignmentFragment"
             app:destination="@id/showAssignmentFragment" />
+        <action
+            android:id="@+id/action_assignmentFragment_to_addAssignmentFragment2"
+            app:destination="@id/addAssignmentFragment2" />
     </fragment>
     <fragment
         android:id="@+id/testFragment"
@@ -34,6 +37,9 @@
         <action
             android:id="@+id/action_testFragment_to_showTestFragment"
             app:destination="@id/showTestFragment" />
+        <action
+            android:id="@+id/action_testFragment_to_addTestFragment"
+            app:destination="@id/addTestFragment" />
     </fragment>
     <fragment
         android:id="@+id/holidayFragment"
@@ -43,10 +49,6 @@
         <action
             android:id="@+id/action_holidayFragment_to_countriesFragment"
             app:destination="@id/countriesFragment" />
-        <argument android:name="pickedCountry"
-            app:argType="com.omarahmed.myassistant.data.remote.CountriesResponse$Countries$CountriesInfo"
-            app:nullable="true"
-            android:defaultValue="@null"/>
     </fragment>
     <fragment
         android:id="@+id/timetableFragment"
@@ -65,6 +67,9 @@
         <argument
             android:name="currentAssignment"
             app:argType="com.omarahmed.myassistant.data.models.AssignmentInfo" />
+        <action
+            android:id="@+id/action_showAssignmentFragment_to_assignmentFragment"
+            app:destination="@id/assignmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/showTestFragment"
@@ -73,6 +78,9 @@
         <argument
             android:name="currentTest"
             app:argType="com.omarahmed.myassistant.data.models.TestInfo" />
+        <action
+            android:id="@+id/action_showTestFragment_to_testFragment"
+            app:destination="@id/testFragment" />
     </fragment>
     <fragment
         android:id="@+id/timetableUpdateFragment"
@@ -91,5 +99,21 @@
         <action
             android:id="@+id/action_countriesFragment_to_holidayFragment"
             app:destination="@id/holidayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addAssignmentFragment2"
+        android:name="com.omarahmed.myassistant.assignment.AddAssignmentFragment"
+        android:label="AddAssignmentFragment" >
+        <action
+            android:id="@+id/action_addAssignmentFragment2_to_assignmentFragment"
+            app:destination="@id/assignmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTestFragment"
+        android:name="com.omarahmed.myassistant.test.AddTestFragment"
+        android:label="AddTestFragment" >
+        <action
+            android:id="@+id/action_addTestFragment_to_testFragment"
+            app:destination="@id/testFragment" />
     </fragment>
 </navigation>
