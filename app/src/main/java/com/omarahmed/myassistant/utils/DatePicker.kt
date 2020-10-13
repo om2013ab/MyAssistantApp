@@ -13,7 +13,6 @@ class DatePicker {
         fun datePickerDialog(view: TextInputEditText, context: Context) {
             val instance = Calendar.getInstance()
             DatePickerDialog(context, { _, year, month, dayOfMonth ->
-
                     instance.apply {
                         set(Calendar.YEAR, year)
                         set(Calendar.MONTH, month)
@@ -30,8 +29,6 @@ class DatePicker {
             ).show()
 
         }
-
-
     }
 
 }
