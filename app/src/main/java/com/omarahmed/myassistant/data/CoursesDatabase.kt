@@ -10,10 +10,8 @@ import com.omarahmed.myassistant.data.models.*
 import com.omarahmed.myassistant.data.remote.CountriesResponse
 
 @Database(
-    entities = [CourseInfo::class, AssignmentInfo::class,
-        TestInfo::class, TimetableInfo::class, CountriesResponse.Countries.CountriesInfo::class
-    ,HolidayInfo::class],
-    version = 16,
+    entities = [CourseInfo::class, AssignmentInfo::class,TestInfo::class, TimetableInfo::class, CountriesResponse.Countries.CountriesInfo::class, HolidayInfo::class],
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(Converter::class)
@@ -21,9 +19,12 @@ abstract class CoursesDatabase : RoomDatabase() {
     abstract fun courseInfoDao(): CourseInfoDao
     abstract fun assignmentInfoDao(): AssignmentInfoDao
     abstract fun testInfoDao(): TestInfoDao
-    abstract fun timetableDao():TimetableDao
+    abstract fun timetableDao(): TimetableDao
     abstract fun countriesDao(): CountriesDao
     abstract fun holidayDao(): HolidayDao
+
+
+
 
     companion object {
         @Volatile
