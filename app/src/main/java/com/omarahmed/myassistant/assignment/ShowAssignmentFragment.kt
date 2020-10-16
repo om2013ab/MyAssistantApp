@@ -94,7 +94,7 @@ class ShowAssignmentFragment : Fragment() {
     }
 
     private fun updateAssignmentInfo() {
-        val code = binding.showCode.text.toString()
+        val name = binding.showName.text.toString()
         val deadline =
             SimpleDateFormat(DATE_PATTERN, Locale.US).parse(binding.showDeadline.text.toString())
         var description = binding.showDescription.text.toString()
@@ -112,7 +112,7 @@ class ShowAssignmentFragment : Fragment() {
             } else {
                 val updatedInfo = AssignmentInfo(
                     args.currentAssignment.id,
-                    code,
+                    name,
                     deadline,
                     description,
                     notify,
@@ -125,7 +125,7 @@ class ShowAssignmentFragment : Fragment() {
                         requireContext(),
                         args.currentAssignment.id,
                         it.timeInMillis,
-                        code,
+                        name,
                         binding.showDeadline.text.toString(),
                         "assignment"
                     )
@@ -136,13 +136,13 @@ class ShowAssignmentFragment : Fragment() {
     }
 
     private fun setupDropDownMenu() {
-        val codeList = ArrayList<String>()
+        val nameList = ArrayList<String>()
         homeViewModel.getAllCourses.observe(viewLifecycleOwner, {
-            for (code in it) {
-                codeList.add(code.courseCode)
+            for (name in it) {
+                nameList.add(name.courseName)
             }
-            val adapter = ArrayAdapter(requireContext(), R.layout.drop_down_layout, codeList)
-            binding.showCode.setAdapter(adapter)
+            val adapter = ArrayAdapter(requireContext(), R.layout.drop_down_layout, nameList)
+            binding.showName.setAdapter(adapter)
         })
     }
 
@@ -188,7 +188,7 @@ class ShowAssignmentFragment : Fragment() {
                                 requireContext(),
                                 args.currentAssignment.id,
                                 it.time,
-                                args.currentAssignment.code,
+                                args.currentAssignment.name,
                                 deadline,
                                 "assignment"
                             )
