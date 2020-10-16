@@ -11,7 +11,7 @@ import java.util.*
 data class TestInfo(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val code:String,
+    val name:String,
     val date: Date?,
     val time: Date?,
     val chapters:String,
