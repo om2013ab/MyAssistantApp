@@ -12,7 +12,7 @@ import java.util.*
 data class AssignmentInfo(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val code:String,
+    val name:String,
     val deadLine: Date?,
     val description:String,
     val notification: Boolean,
