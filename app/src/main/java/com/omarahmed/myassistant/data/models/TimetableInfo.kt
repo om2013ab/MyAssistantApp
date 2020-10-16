@@ -11,7 +11,7 @@ import java.util.*
 data class TimetableInfo(
     @PrimaryKey(autoGenerate = true)
     val id:Int,
-    val code:String,
+    val name:String,
     val from:Date?,
     val to: Date?,
     val venue:String,
