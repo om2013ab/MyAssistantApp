@@ -94,20 +94,20 @@ class AddAssignmentFragment : Fragment() {
     }
 
     private fun setupDropDownMenu() {
-        val codeList = ArrayList<String>()
+        val nameList = ArrayList<String>()
         homeViewModel.getAllCourses.observe(viewLifecycleOwner, {
-            for (code in it) {
-                codeList.add(code.courseCode)
+            for (name in it) {
+                nameList.add(name.courseName)
             }
-            val adapter = ArrayAdapter(requireContext(), R.layout.drop_down_layout, codeList)
-            binding.codeAssignment.setAdapter(adapter)
+            val adapter = ArrayAdapter(requireContext(), R.layout.drop_down_layout, nameList)
+            binding.assignmentName.setAdapter(adapter)
         })
 
     }
 
     private fun insertAssignments() {
         val id = Random().nextInt()
-        val code = binding.codeAssignment.text.toString()
+        val name = binding.assignmentName.text.toString()
         val deadline =
             SimpleDateFormat(DATE_PATTERN, Locale.US).parse(binding.deadline.text.toString())
         var description = binding.description.text.toString()
@@ -123,11 +123,11 @@ class AddAssignmentFragment : Fragment() {
             if (binding.notificationDate.text!!.isEmpty() && binding.notificationDateLayout.isVisible) {
                 binding.notificationDateLayout.error = "This field is required"
             } else {
-                val newAssignment = AssignmentInfo(id, code, deadline, description, notify,notificationDate?.time)
+                val newAssignment = AssignmentInfo(id, name, deadline, description, notify,notificationDate?.time)
                 assignmentViewModel.insertAssignment(newAssignment)
                 findNavController().navigate(R.id.action_addAssignmentFragment2_to_assignmentFragment)
                 notificationDate?.let {
-                    startAlarm(requireContext(),id,it.timeInMillis,code,binding.deadline.text.toString(),"assignment")
+                    startAlarm(requireContext(),id,it.timeInMillis,name,binding.deadline.text.toString(),"assignment")
                 }
             }
         }
