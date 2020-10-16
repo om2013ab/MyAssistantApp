@@ -1,6 +1,5 @@
 package com.omarahmed.myassistant.holiday
 
-import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities.*
@@ -8,28 +7,31 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.omarahmed.myassistant.MyApplication
 import com.omarahmed.myassistant.data.CoursesDatabase
 import com.omarahmed.myassistant.data.models.HolidayInfo
 import com.omarahmed.myassistant.data.remote.CountriesResponse
 import com.omarahmed.myassistant.data.remote.HolidayResponse
 import com.omarahmed.myassistant.data.repository.HolidayRepository
 import com.omarahmed.myassistant.utils.Resource
+import com.omarahmed.myassistant.utils.SharedPreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
 
-class HolidayViewModel(application: Application) : AndroidViewModel(application) {
+class HolidayViewModel(application: android.app.Application) : AndroidViewModel(application) {
+    private val sharedPreference = SharedPreference(application.applicationContext)
     private val db = CoursesDatabase.getDatabase(application.applicationContext)
     private val repository = HolidayRepository(db)
 
-    private val _holidaysFromApi: MutableLiveData<Resource<HolidayResponse>> = MutableLiveData()
-    val holidaysFromApi: LiveData<Resource<HolidayResponse>>
-        get() = _holidaysFromApi
+    private val _holidaysApiResponse: MutableLiveData<Resource<HolidayResponse>> = MutableLiveData()
+    val holidaysApiResponse: LiveData<Resource<HolidayResponse>>
+        get() = _holidaysApiResponse
 
-    private val _countriesFromApi: MutableLiveData<Resource<CountriesResponse>> = MutableLiveData()
-    val countriesFromApi: LiveData<Resource<CountriesResponse>>
-        get() = _countriesFromApi
+    private val _countriesApiResponse: MutableLiveData<Resource<CountriesResponse>> = MutableLiveData()
+    val countriesApiResponse: LiveData<Resource<CountriesResponse>>
+        get() = _countriesApiResponse
 
     val countriesFromRoom: LiveData<List<CountriesResponse.Countries.CountriesInfo>> =
         repository.getCountriesFromRoom
@@ -37,19 +39,19 @@ class HolidayViewModel(application: Application) : AndroidViewModel(application)
 
     fun getHolidaysFromApi(countryCode: String?, year: Int, month: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            _holidaysFromApi.postValue(Resource.Loading())
+            _holidaysApiResponse.postValue(Resource.Loading())
             try {
                 if (hasInternetConnection()) {
                     val response = repository.getAllHolidaysFromApi(countryCode, year, month)
-                    _holidaysFromApi.postValue(handleHolidayResponse(response))
+                    _holidaysApiResponse.postValue(handleHolidayResponse(response))
                 } else {
-                    _holidaysFromApi.postValue(Resource.Error("Check Internet Connection"))
+                    _holidaysApiResponse.postValue(Resource.Error("Check Internet Connection"))
                 }
 
             } catch (t: Throwable) {
                 when (t) {
-                    is IOException -> _holidaysFromApi.postValue(Resource.Error("Network Failure"))
-                    else -> _holidaysFromApi.postValue(Resource.Error("Something went wrong"))
+                    is IOException -> _holidaysApiResponse.postValue(Resource.Error("Network Failure"))
+                    else -> _holidaysApiResponse.postValue(Resource.Error("Something went wrong"))
                 }
             }
         }
@@ -57,19 +59,19 @@ class HolidayViewModel(application: Application) : AndroidViewModel(application)
 
     fun getCountriesFromApi() {
         viewModelScope.launch(Dispatchers.IO) {
-            _countriesFromApi.postValue(Resource.Loading())
+            _countriesApiResponse.postValue(Resource.Loading())
             try {
                 if (hasInternetConnection()) {
                     val response = repository.getCountriesFromApi()
-                    _countriesFromApi.postValue(handleCountriesResponse(response))
+                    _countriesApiResponse.postValue(handleCountriesResponse(response))
                 } else {
-                    _countriesFromApi.postValue(Resource.Error("Check Internet Connection"))
+                    _countriesApiResponse.postValue(Resource.Error("Check Internet Connection"))
                 }
 
             } catch (t: Throwable) {
                 when (t) {
-                    is IOException -> _countriesFromApi.postValue(Resource.Error("Network Failure"))
-                    else -> _countriesFromApi.postValue(Resource.Error("Something went wrong"))
+                    is IOException -> _countriesApiResponse.postValue(Resource.Error("Network Failure"))
+                    else -> _countriesApiResponse.postValue(Resource.Error("Something went wrong"))
                 }
             }
         }
@@ -96,8 +98,10 @@ class HolidayViewModel(application: Application) : AndroidViewModel(application)
             holidaysResponse?.let {
                 return Resource.Success(it)
             }
+
         }
         return Resource.Error(response.message())
+
     }
 
 
@@ -111,8 +115,8 @@ class HolidayViewModel(application: Application) : AndroidViewModel(application)
             repository.insertHolidays(holidayInfo)
         }
 
-    private fun hasInternetConnection(): Boolean {
-        val connectivityManager = getApplication<HolidayApplication>().getSystemService(
+    fun hasInternetConnection(): Boolean {
+        val connectivityManager = getApplication<MyApplication>().getSystemService(
             Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activityNetwork = connectivityManager.activeNetwork ?: return false
         val capabilities =
