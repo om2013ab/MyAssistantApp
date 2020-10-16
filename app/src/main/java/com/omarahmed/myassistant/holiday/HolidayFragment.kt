@@ -27,14 +27,13 @@ class HolidayFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_holiday, container, false)
         holidayAdapter = HolidayAdapter()
         sharedPreference = SharedPreference(requireContext())
         val countryCode = sharedPreference.getStringValue("countryCode","MY")
         val countryName = sharedPreference.getStringValue("countryName","Malaysia")
         holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,1)
-        holidayViewModel.holidaysFromApi.observe(viewLifecycleOwner, { response ->
+        holidayViewModel.holidaysApiResponse.observe(viewLifecycleOwner, { response ->
             handleResponse(response,countryCode)
 
         })
@@ -53,7 +52,7 @@ class HolidayFragment : Fragment() {
 
 
     private fun handleFirstTimeOfRunning() {
-        val firstRun = sharedPreference.getBooleanValue("isFirstRun")
+        val firstRun = sharedPreference.getBooleanValue("isFirstRun",true)
         if (firstRun){
             findNavController().navigate(R.id.action_holidayFragment_to_countriesFragment)
             sharedPreference.putBooleanValue("isFirstRun", false)
@@ -64,9 +63,15 @@ class HolidayFragment : Fragment() {
         when (response) {
             is Resource.Success -> {
                 progressLoading.visibility = View.INVISIBLE
-                rv_holidays.visibility = View.VISIBLE
                 response.data?.let { holidayResponse ->
                     holidayAdapter.holidayList.submitList(holidayResponse.response.holidays)
+                    if (holidayResponse.response.holidays.isEmpty()){
+                        noHolidayTxt.visibility = View.VISIBLE
+                        referenceTxt.visibility = View.INVISIBLE
+                    }else{
+                        noHolidayTxt.visibility = View.INVISIBLE
+                        referenceTxt.visibility = View.VISIBLE
+                    }
                 }
             }
             is Resource.Error -> {
