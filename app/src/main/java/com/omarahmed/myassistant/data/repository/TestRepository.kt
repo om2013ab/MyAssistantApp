@@ -2,7 +2,7 @@ package com.omarahmed.myassistant.data.repository
 
 import androidx.lifecycle.LiveData
 import com.omarahmed.myassistant.data.dao.TestInfoDao
-import com.omarahmed.myassistant.data.models.TestInfo
+import com.omarahmed.myassistant.test.TestInfo
 
 class TestRepository(val dao: TestInfoDao) {
     val getAllTest:LiveData<List<TestInfo>> = dao.getAllTests()

@@ -2,7 +2,7 @@ package com.omarahmed.myassistant.data.repository
 
 import androidx.lifecycle.LiveData
 import com.omarahmed.myassistant.data.dao.AssignmentInfoDao
-import com.omarahmed.myassistant.data.models.AssignmentInfo
+import com.omarahmed.myassistant.assignment.AssignmentInfo
 
 class AssignmentRepository(private val dao: AssignmentInfoDao) {
     val getAllAssignment: LiveData<List<AssignmentInfo>> = dao.getAllAssignments()

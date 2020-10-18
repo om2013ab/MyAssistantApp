@@ -2,7 +2,7 @@ package com.omarahmed.myassistant.data.repository
 
 import androidx.lifecycle.LiveData
 import com.omarahmed.myassistant.data.dao.CourseInfoDao
-import com.omarahmed.myassistant.data.models.CourseInfo
+import com.omarahmed.myassistant.home.CourseInfo
 
 class HomeRepository(private val dao: CourseInfoDao){
     val getAllCourses: LiveData<List<CourseInfo>>  = dao.getAllCourses()

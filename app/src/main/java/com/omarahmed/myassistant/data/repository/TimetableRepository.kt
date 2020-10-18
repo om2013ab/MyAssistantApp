@@ -2,7 +2,7 @@ package com.omarahmed.myassistant.data.repository
 
 import androidx.lifecycle.LiveData
 import com.omarahmed.myassistant.data.dao.TimetableDao
-import com.omarahmed.myassistant.data.models.TimetableInfo
+import com.omarahmed.myassistant.timetable.TimetableInfo
 
 class TimetableRepository(private val dao: TimetableDao) {
 
