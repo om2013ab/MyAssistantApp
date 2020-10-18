@@ -1,7 +1,7 @@
 package com.omarahmed.myassistant.data
 
 import androidx.room.TypeConverter
-import com.omarahmed.myassistant.data.models.HolidayInfo
+import com.omarahmed.myassistant.holiday.HolidayInfo
 import java.util.*
 
 class Converter {
@@ -17,7 +17,7 @@ class Converter {
     }
 
     @TypeConverter
-    fun toDateTime(dayTime:HolidayInfo.Date): HolidayInfo.Date.DateTime{
+    fun toDateTime(dayTime: HolidayInfo.Date): HolidayInfo.Date.DateTime{
         return dayTime.datetime
     }
 
@@ -27,7 +27,7 @@ class Converter {
     }
 
     @TypeConverter
-    fun toInt(day:HolidayInfo.Date.DateTime): Int {
+    fun toInt(day: HolidayInfo.Date.DateTime): Int {
         return day.day
     }
 
