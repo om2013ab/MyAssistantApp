@@ -2,7 +2,7 @@ package com.omarahmed.myassistant.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.omarahmed.myassistant.data.models.TestInfo
+import com.omarahmed.myassistant.test.TestInfo
 
 @Dao
 interface TestInfoDao {
