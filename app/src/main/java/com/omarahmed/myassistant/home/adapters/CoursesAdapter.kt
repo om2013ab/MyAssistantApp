@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.omarahmed.myassistant.data.models.CourseInfo
+import com.omarahmed.myassistant.home.CourseInfo
 import com.omarahmed.myassistant.databinding.RvCoursesLayoutBinding
 
 class CoursesAdapter(private val onClickListener: OnClickListener): RecyclerView.Adapter<CoursesAdapter.CourseViewHolder>() {
