@@ -15,7 +15,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.omarahmed.myassistant.R
 import com.omarahmed.myassistant.alarmmanager.ScheduleAlarm.Companion.cancelAlarm
 import com.omarahmed.myassistant.alarmmanager.ScheduleAlarm.Companion.startAlarm
-import com.omarahmed.myassistant.data.models.AssignmentInfo
 import com.omarahmed.myassistant.databinding.FragmentShowAssignmentBinding
 import com.omarahmed.myassistant.home.HomeViewModel
 import com.omarahmed.myassistant.utils.Constants.Companion.DATE_PATTERN
