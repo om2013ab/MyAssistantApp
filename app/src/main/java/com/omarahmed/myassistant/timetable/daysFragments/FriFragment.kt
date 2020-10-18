@@ -11,17 +11,16 @@ import android.widget.PopupMenu
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.omarahmed.myassistant.R
-import com.omarahmed.myassistant.timetable.TimetableInfo
 import com.omarahmed.myassistant.databinding.DialogAddSchedualBinding
 import com.omarahmed.myassistant.databinding.FragmentFriBinding
 import com.omarahmed.myassistant.home.HomeViewModel
 import com.omarahmed.myassistant.timetable.TimetableAdapter
 import com.omarahmed.myassistant.timetable.TimetableFragmentDirections
+import com.omarahmed.myassistant.timetable.TimetableInfo
 import com.omarahmed.myassistant.timetable.TimetableViewModel
 import com.omarahmed.myassistant.utils.Constants.Companion.TIME_PATTERN
 import com.omarahmed.myassistant.utils.TextWatcher
@@ -46,7 +45,7 @@ class FriFragment : Fragment() {
         val timetableAdapter = TimetableAdapter(TimetableAdapter.OnClickListener{ currentSchedule, view ->
             setupPopMenu(currentSchedule,view)
         })
-        timetableViewModel.getSchedule("Friday").observe(viewLifecycleOwner, Observer {
+        timetableViewModel.getSchedule("Friday").observe(viewLifecycleOwner, {
             timetableAdapter.scheduleList.submitList(it)
         })
         binding.rvFriday.adapter = timetableAdapter
@@ -98,7 +97,7 @@ class FriFragment : Fragment() {
 
     private fun setupDropDownMenu(view: DialogAddSchedualBinding) {
         val nameList = ArrayList<String>()
-        homeViewModel.getAllCourses.observe(viewLifecycleOwner, Observer {
+        homeViewModel.getAllCourses.observe(viewLifecycleOwner, {
             for (code in it){
                 nameList.add(code.courseName)
             }
