@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.omarahmed.myassistant.data.CoursesDatabase
-import com.omarahmed.myassistant.data.models.TimetableInfo
 import com.omarahmed.myassistant.data.repository.TimetableRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

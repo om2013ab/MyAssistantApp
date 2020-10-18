@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.omarahmed.myassistant.data.models.TimetableInfo
 import com.omarahmed.myassistant.databinding.RvTimetableLayoutBinding
 
 class TimetableAdapter(private val onClickListener: OnClickListener) : RecyclerView.Adapter<TimetableAdapter.TimetableViewHolder>() {
@@ -46,7 +45,7 @@ class TimetableAdapter(private val onClickListener: OnClickListener) : RecyclerV
         }
     }
 
-    class OnClickListener(val clickListener:(timetableInfo: TimetableInfo,view:View)-> Unit){
+    class OnClickListener(val clickListener:(timetableInfo: TimetableInfo, view:View)-> Unit){
         fun onClick(timetableInfo: TimetableInfo, view: View) = clickListener(timetableInfo,view)
     }
 

@@ -6,11 +6,9 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.omarahmed.myassistant.R
-import com.omarahmed.myassistant.data.models.TimetableInfo
 import com.omarahmed.myassistant.databinding.FragmentTimetableUpdateBinding
 import com.omarahmed.myassistant.home.HomeViewModel
 import com.omarahmed.myassistant.utils.Constants
@@ -44,13 +42,13 @@ class TimetableUpdateFragment : Fragment() {
     }
 
     private fun setupDropDownMenu() {
-        val codeList = ArrayList<String>()
-        homeViewModel.getAllCourses.observe(viewLifecycleOwner, Observer {
-            for (code in it) {
-                codeList.add(code.courseCode)
+        val nameList = ArrayList<String>()
+        homeViewModel.getAllCourses.observe(viewLifecycleOwner, {
+            for (name in it) {
+                nameList.add(name.courseName)
             }
-            val adapter = ArrayAdapter(requireContext(), R.layout.drop_down_layout, codeList)
-            binding.code.setAdapter(adapter)
+            val adapter = ArrayAdapter(requireContext(), R.layout.drop_down_layout, nameList)
+            binding.name.setAdapter(adapter)
         })
 
     }
@@ -71,7 +69,7 @@ class TimetableUpdateFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.save -> {
-                val code = binding.code.text.toString()
+                val name = binding.name.text.toString()
                 val from = SimpleDateFormat(
                     Constants.TIME_PATTERN,
                     Locale.US
@@ -86,7 +84,7 @@ class TimetableUpdateFragment : Fragment() {
                 }
                 val updatedSchedule = TimetableInfo(
                     args.editSchedule.id,
-                    code,
+                    name,
                     from,
                     to,
                     venue,

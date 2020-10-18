@@ -11,12 +11,11 @@ import android.widget.PopupMenu
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.omarahmed.myassistant.R
-import com.omarahmed.myassistant.data.models.TimetableInfo
+import com.omarahmed.myassistant.timetable.TimetableInfo
 import com.omarahmed.myassistant.databinding.DialogAddSchedualBinding
 import com.omarahmed.myassistant.databinding.FragmentTuesBinding
 import com.omarahmed.myassistant.home.HomeViewModel
@@ -47,7 +46,7 @@ class TuesFragment : Fragment() {
         binding.fabTuesday.setOnClickListener {
             setupAddScheduleDialog()
         }
-        timetableViewModel.getSchedule("Tuesday").observe(viewLifecycleOwner, Observer {
+        timetableViewModel.getSchedule("Tuesday").observe(viewLifecycleOwner,  {
             timetableAdapter.scheduleList.submitList(it)
         })
         binding.rvTuesday.adapter = timetableAdapter
@@ -98,26 +97,26 @@ class TuesFragment : Fragment() {
     }
 
     private fun insertSchedule(view: DialogAddSchedualBinding, dialog: AlertDialog) {
-        val code = view.code.text.toString()
+        val name = view.name.text.toString()
         val from = SimpleDateFormat(Constants.TIME_PATTERN, Locale.US).parse(view.from.text.toString())
         val to = SimpleDateFormat(Constants.TIME_PATTERN, Locale.US).parse(view.to.text.toString())
         var venue = view.venue.text.toString()
         if (venue == ""){
             venue = "Unknown venue"
         }
-        val newSchedule = TimetableInfo(0,code,from,to,venue,"Tuesday")
+        val newSchedule = TimetableInfo(0,name,from,to,venue,"Tuesday")
         timetableViewModel.insertSchedules(newSchedule)
         dialog.dismiss()
     }
 
     private fun setupDropDownMenu(view: DialogAddSchedualBinding) {
-        val codeList = ArrayList<String>()
-        homeViewModel.getAllCourses.observe(viewLifecycleOwner, Observer {
-            for(code in it){
-                codeList.add(code.courseCode)
+        val nameList = ArrayList<String>()
+        homeViewModel.getAllCourses.observe(viewLifecycleOwner,  {
+            for(name in it){
+                nameList.add(name.courseName)
             }
-            val adapter = ArrayAdapter(requireContext(), R.layout.drop_down_layout,codeList)
-            view.code.setAdapter(adapter)
+            val adapter = ArrayAdapter(requireContext(), R.layout.drop_down_layout,nameList)
+            view.name.setAdapter(adapter)
         })
 
     }
