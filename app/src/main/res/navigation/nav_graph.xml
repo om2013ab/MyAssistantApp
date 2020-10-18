@@ -66,7 +66,7 @@
         tools:layout="@layout/fragment_show_assignment" >
         <argument
             android:name="currentAssignment"
-            app:argType="com.omarahmed.myassistant.data.models.AssignmentInfo" />
+            app:argType="com.omarahmed.myassistant.assignment.AssignmentInfo" />
         <action
             android:id="@+id/action_showAssignmentFragment_to_assignmentFragment"
             app:destination="@id/assignmentFragment" />
@@ -77,7 +77,7 @@
         android:label="fragment_show_test">
         <argument
             android:name="currentTest"
-            app:argType="com.omarahmed.myassistant.data.models.TestInfo" />
+            app:argType="com.omarahmed.myassistant.test.TestInfo" />
         <action
             android:id="@+id/action_showTestFragment_to_testFragment"
             app:destination="@id/testFragment" />
@@ -89,7 +89,7 @@
         tools:layout="@layout/fragment_timetable_update" >
         <argument
             android:name="editSchedule"
-            app:argType="com.omarahmed.myassistant.data.models.TimetableInfo" />
+            app:argType="com.omarahmed.myassistant.timetable.TimetableInfo" />
     </fragment>
     <fragment
         android:id="@+id/countriesFragment"
