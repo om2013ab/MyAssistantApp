@@ -1,4 +1,4 @@
-package com.omarahmed.myassistant.data.models
+package com.omarahmed.myassistant.holiday
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
