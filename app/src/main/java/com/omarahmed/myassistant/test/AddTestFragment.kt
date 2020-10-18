@@ -14,7 +14,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.omarahmed.myassistant.R
 import com.omarahmed.myassistant.alarmmanager.ScheduleAlarm.Companion.startAlarm
-import com.omarahmed.myassistant.data.models.TestInfo
 import com.omarahmed.myassistant.databinding.FragmentAddTestBinding
 import com.omarahmed.myassistant.home.HomeViewModel
 import com.omarahmed.myassistant.utils.Constants
@@ -68,13 +67,13 @@ class AddTestFragment : Fragment() {
     }
 
     private fun setupDropDownMenu() {
-        val codeList = ArrayList<String>()
+        val nameList = ArrayList<String>()
         homeViewModel.getAllCourses.observe(viewLifecycleOwner,{
-            for (code in it) {
-                codeList.add(code.courseCode)
+            for (name in it) {
+                nameList.add(name.courseName)
             }
-            val adapter = ArrayAdapter(requireContext(), R.layout.drop_down_layout, codeList)
-            binding.codeTest.setAdapter(adapter)
+            val adapter = ArrayAdapter(requireContext(), R.layout.drop_down_layout, nameList)
+            binding.testName.setAdapter(adapter)
         })
 
     }
@@ -107,7 +106,7 @@ class AddTestFragment : Fragment() {
 
     private fun insertTests() {
         val id = Random().nextInt()
-        val code = binding.codeTest.text.toString()
+        val name = binding.testName.text.toString()
         val date = SimpleDateFormat(DATE_PATTERN, Locale.US).parse(binding.testDate.text.toString())
         val time = SimpleDateFormat(Constants.TIME_PATTERN, Locale.US).parse(binding.testTime.text.toString())
         var chapters = binding.chapters.text.toString()
@@ -123,11 +122,11 @@ class AddTestFragment : Fragment() {
             if (binding.notificationTestDate.text!!.isEmpty() && binding.notificationTestDateLayout.isVisible){
                 binding.notificationTestDateLayout.error = "This field is required"
             } else {
-                val newTest = TestInfo(id, code, date, time, chapters, notify,notificationDate?.time)
+                val newTest = TestInfo(id, name, date, time, chapters, notify,notificationDate?.time)
                 testViewModel.insertTest(newTest)
                 findNavController().navigate(R.id.action_addTestFragment_to_testFragment)
                 notificationDate?.let {
-                    startAlarm(requireContext(),id,it.timeInMillis,code,binding.testDate.text.toString(),"test")
+                    startAlarm(requireContext(),id,it.timeInMillis,name,binding.testDate.text.toString(),"test")
                 }
             }
         }

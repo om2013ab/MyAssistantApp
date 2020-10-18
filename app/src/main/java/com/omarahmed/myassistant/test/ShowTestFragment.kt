@@ -3,6 +3,7 @@ package com.omarahmed.myassistant.test
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.*
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -14,8 +15,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.omarahmed.myassistant.R
 import com.omarahmed.myassistant.alarmmanager.ScheduleAlarm.Companion.cancelAlarm
 import com.omarahmed.myassistant.alarmmanager.ScheduleAlarm.Companion.startAlarm
-import com.omarahmed.myassistant.data.models.TestInfo
 import com.omarahmed.myassistant.databinding.FragmentShowTestBinding
+import com.omarahmed.myassistant.home.HomeViewModel
 import com.omarahmed.myassistant.utils.Constants.Companion.DATE_PATTERN
 import com.omarahmed.myassistant.utils.Constants.Companion.TIME_PATTERN
 import com.omarahmed.myassistant.utils.DatePicker
@@ -27,6 +28,7 @@ import java.util.*
 class ShowTestFragment : Fragment() {
     private val args: ShowTestFragmentArgs by navArgs()
     private val testViewModel: TestViewModel by viewModels()
+    private val homeViewModel:HomeViewModel by viewModels()
     private lateinit var binding: FragmentShowTestBinding
     private var updateNotificationDate: Calendar? = null
     override fun onCreateView(
@@ -58,11 +60,12 @@ class ShowTestFragment : Fragment() {
                 binding.notificationTestDate.text!!.clear()
             }
         }
+        setupDropDownMenu()
         return binding.root
     }
 
     private fun updateTestInfo() {
-        val code = binding.showCode.text.toString()
+        val name = binding.showName.text.toString()
         val date = SimpleDateFormat(DATE_PATTERN, Locale.US).parse(binding.showDate.text.toString())
         val time = SimpleDateFormat(TIME_PATTERN, Locale.US).parse(binding.showTime.text.toString())
         var chapters = binding.showChapters.text.toString()
@@ -78,7 +81,7 @@ class ShowTestFragment : Fragment() {
             if (binding.notificationTestDate.text!!.isEmpty() && binding.notificationTestDateLayout.isVisible) {
                 binding.notificationTestDateLayout.error = "This field is required"
             } else {
-                val updatedTest = TestInfo(args.currentTest.id, code, date, time, chapters, notify, updateNotificationDate?.time)
+                val updatedTest = TestInfo(args.currentTest.id, name, date, time, chapters, notify, updateNotificationDate?.time)
                 testViewModel.updateTest(updatedTest)
                 cancelAlarm(requireContext(), args.currentTest.id)
                 updateNotificationDate?.let {
@@ -86,7 +89,7 @@ class ShowTestFragment : Fragment() {
                         requireContext(),
                         args.currentTest.id,
                         it.timeInMillis,
-                        code,
+                        name,
                         binding.showDate.text.toString(),
                         "test"
                     )
@@ -95,6 +98,16 @@ class ShowTestFragment : Fragment() {
             }
         }
 
+    }
+    private fun setupDropDownMenu() {
+        val nameList = ArrayList<String>()
+        homeViewModel.getAllCourses.observe(viewLifecycleOwner, {
+            for (name in it) {
+                nameList.add(name.courseName)
+            }
+            val adapter = ArrayAdapter(requireContext(), R.layout.drop_down_layout, nameList)
+            binding.showName.setAdapter(adapter)
+        })
     }
 
     private fun setupToolbar() {
@@ -162,7 +175,7 @@ class ShowTestFragment : Fragment() {
                                 requireContext(),
                                 args.currentTest.id,
                                 it.time,
-                                args.currentTest.code,
+                                args.currentTest.name,
                                 testDate,
                                 "test"
                             )

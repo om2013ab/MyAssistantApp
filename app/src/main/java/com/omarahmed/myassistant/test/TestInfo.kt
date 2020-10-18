@@ -1,4 +1,4 @@
-package com.omarahmed.myassistant.data.models
+package com.omarahmed.myassistant.test
 
 import android.os.Parcelable
 import androidx.room.Entity
