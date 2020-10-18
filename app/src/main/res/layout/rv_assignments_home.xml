@@ -6,7 +6,7 @@
     <data>
         <variable
             name="assignmentInfo"
-            type="com.omarahmed.myassistant.data.models.AssignmentInfo" />
+            type="com.omarahmed.myassistant.assignment.AssignmentInfo" />
 
     </data>
 
@@ -32,14 +32,14 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:gravity="center"
-                android:text="@{assignmentInfo.code}"
+                android:text="@{assignmentInfo.name}"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="10dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/poppins"
                 android:textColor="@android:color/black"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 tools:text="MGM3215" />
 
             <TextView

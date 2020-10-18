@@ -6,7 +6,7 @@
     <data>
         <variable
             name="courseInfo"
-            type="com.omarahmed.myassistant.data.models.CourseInfo" />
+            type="com.omarahmed.myassistant.home.CourseInfo" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

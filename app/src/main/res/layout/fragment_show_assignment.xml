@@ -25,127 +25,137 @@
             app:navigationIcon="@drawable/ic_arrow"
             app:title="@string/about_the_assignment"
             app:titleTextColor="@android:color/white" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/codeLayout"
-            style="@style/textInputStyle"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:enabled="false"
-            android:hint="@string/course_code"
-            app:endIconMode="dropdown_menu">
-
-            <AutoCompleteTextView
-                android:id="@+id/showCode"
+            android:layout_height="match_parent">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:paddingStart="15dp"
-                android:paddingEnd="0dp"
-                android:text="@{args.currentAssignment.code}"
-                android:textSize="16sp"
-                tools:ignore="LabelFor" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                android:paddingBottom="50dp">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/codeLayout"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:enabled="false"
+                    android:hint="@string/course_name"
+                    app:endIconMode="dropdown_menu">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/show_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="0dp"
+                        android:text="@{args.currentAssignment.name}"
+                        android:textSize="16sp"
+                        tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/deadlineLayout"
-            style="@style/textInputStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/deadline">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/deadlineLayout"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/deadline">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/showDeadline"
-                dateFormat="@{args.currentAssignment.deadLine}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:enabled="false"
-                android:focusable="false"
-                android:fontFamily="@font/poppins"
-                android:singleLine="true"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/showDeadline"
+                        dateFormat="@{args.currentAssignment.deadLine}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/poppins"
+                        android:singleLine="true"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/descriptionLayout"
-            style="@style/textInputStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/short_description">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/descriptionLayout"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/short_description">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/showDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:enabled="false"
-                android:fontFamily="@font/poppins"
-                android:gravity="start|top"
-                android:lines="2"
-                android:text="@{args.currentAssignment.description}"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/showDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:enabled="false"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="start|top"
+                        android:lines="2"
+                        android:text="@{args.currentAssignment.description}"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins"
-                android:text="@string/notification"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/notification"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/showSwitchAssignment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="@{args.currentAssignment.notification}"
-                android:enabled="false" />
-        </LinearLayout>
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/showSwitchAssignment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@{args.currentAssignment.notification}"
+                        android:enabled="false" />
+                </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/notificationDateLayout"
-            style="@style/textInputStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:hint="Notification date">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/notificationDateLayout"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:hint="Notification date">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/notificationDate"
-                dateFormat="@{args.currentAssignment.notificationDate}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:enabled="false"
-                android:focusable="false"
-                android:fontFamily="@font/poppins"
-                android:singleLine="true"
-                android:textSize="15sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/notificationDate"
+                        dateFormat="@{args.currentAssignment.notificationDate}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/poppins"
+                        android:singleLine="true"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/save_btn_bg"
-            android:fontFamily="@font/poppins"
-            android:text="@string/save"
-            android:textColor="@android:color/white"
-            android:visibility="invisible" />
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/save_btn_bg"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/save"
+                    android:textColor="@android:color/white"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+        </ScrollView>
     </LinearLayout>
 </layout>

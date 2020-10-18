@@ -24,147 +24,155 @@
             app:title="@string/about_the_test"
             app:titleTextColor="@android:color/white"
             app:navigationIcon="@drawable/ic_arrow" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/codeLayout"
-            style="@style/textInputStyle"
-            android:layout_marginTop="50dp"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/course_code"
-            android:enabled="false"
-            app:endIconMode="dropdown_menu">
-
-            <AutoCompleteTextView
-                android:id="@+id/showCode"
+            android:layout_height="match_parent">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:textSize="16sp"
-                android:text="@{args.currentTest.code}"
-                android:paddingStart="15dp"
-                android:paddingEnd="0dp"
-                tools:ignore="LabelFor" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                android:paddingBottom="50dp">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/codeLayout"
+                    style="@style/textInputStyle"
+                    android:layout_marginTop="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/course_name"
+                    android:enabled="false"
+                    app:endIconMode="dropdown_menu">
 
+                    <AutoCompleteTextView
+                        android:id="@+id/show_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="16sp"
+                        android:text="@{args.currentTest.name}"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="0dp"
+                        tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/dateLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/textInputStyle"
-            android:hint="@string/date">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dateLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/textInputStyle"
+                    android:hint="@string/date">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/showDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                dateFormat="@{args.currentTest.date}"
-                android:enabled="false"
-                android:fontFamily="@font/poppins"
-                android:textSize="16sp"
-                android:focusable="false"
-                android:ellipsize="end"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/showDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        dateFormat="@{args.currentTest.date}"
+                        android:enabled="false"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="16sp"
+                        android:focusable="false"
+                        android:ellipsize="end"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/timeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/textInputStyle"
-            android:hint="@string/time">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/timeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/textInputStyle"
+                    android:hint="@string/time">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/showTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                timeFormat="@{args.currentTest.time}"
-                android:enabled="false"
-                android:fontFamily="@font/poppins"
-                android:textSize="16sp"
-                android:focusable="false"
-                android:ellipsize="end"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/showTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        timeFormat="@{args.currentTest.time}"
+                        android:enabled="false"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="16sp"
+                        android:focusable="false"
+                        android:ellipsize="end"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/chaptersLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/textInputStyle"
-            android:hint="@string/chapters_recovered">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/chaptersLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/textInputStyle"
+                    android:hint="@string/chapters_recovered">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/showChapters"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{args.currentTest.chapters}"
-                android:enabled="false"
-                android:fontFamily="@font/poppins"
-                android:textSize="16sp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:gravity="start|top" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/showChapters"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{args.currentTest.chapters}"
+                        android:enabled="false"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="16sp"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:gravity="start|top" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins"
-                android:text="@string/notification"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/notification"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/showSwitchTest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="@{args.currentTest.notification}"
-                android:enabled="false" />
-        </LinearLayout>
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/showSwitchTest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@{args.currentTest.notification}"
+                        android:enabled="false" />
+                </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/notificationTestDateLayout"
-            style="@style/textInputStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:hint="@string/notification_date">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/notificationTestDateLayout"
+                    style="@style/textInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:hint="@string/notification_date">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/notificationTestDate"
-                dateFormat="@{args.currentTest.notificationDate}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:enabled="false"
-                android:focusable="false"
-                android:fontFamily="@font/poppins"
-                android:singleLine="true"
-                android:textSize="15sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/notificationTestDate"
+                        dateFormat="@{args.currentTest.notificationDate}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/poppins"
+                        android:singleLine="true"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/save_btn_bg"
-            android:fontFamily="@font/poppins"
-            android:visibility="invisible"
-            android:text="@string/save"
-            android:textColor="@android:color/white" />
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/save_btn_bg"
+                    android:fontFamily="@font/poppins"
+                    android:visibility="invisible"
+                    android:text="@string/save"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </layout>

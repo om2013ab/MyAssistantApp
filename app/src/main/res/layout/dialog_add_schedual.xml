@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -40,20 +41,22 @@
                     android:textSize="16sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/codeLayout"
+                    android:id="@+id/nameLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/textInputStyle"
-                    android:hint="@string/course_code"
+                    android:hint="@string/course_name"
                     app:endIconMode="dropdown_menu">
 
                     <AutoCompleteTextView
-                        android:id="@+id/code"
+                        android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
                         android:fontFamily="@font/poppins"
-                        android:labelFor="@id/code"
+                        android:labelFor="@id/name"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:paddingStart="15dp"
                         android:paddingEnd="0dp"
                         android:textSize="15sp" />

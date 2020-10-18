@@ -5,7 +5,7 @@
     <data>
         <variable
             name="testInfo"
-            type="com.omarahmed.myassistant.data.models.TestInfo" />
+            type="com.omarahmed.myassistant.test.TestInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
                     tools:text="MGM3215"
-                    android:text="@{testInfo.code}"
+                    android:text="@{testInfo.name}"
                     android:textColor="@color/test_code_color"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"

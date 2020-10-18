@@ -6,7 +6,7 @@
     <data>
         <variable
             name="holidayInfo"
-            type="com.omarahmed.myassistant.data.models.HolidayInfo" />
+            type="com.omarahmed.myassistant.holiday.HolidayInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

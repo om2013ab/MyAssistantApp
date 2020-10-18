@@ -18,7 +18,7 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="Timetable" />
+            app:title="Lectures timetable" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"

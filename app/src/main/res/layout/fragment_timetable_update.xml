@@ -47,17 +47,17 @@
                     style="@style/textInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/course_code"
+                    android:hint="@string/course_name"
                     app:endIconMode="dropdown_menu">
 
                     <AutoCompleteTextView
-                        android:id="@+id/code"
-                        android:text="@{args.editSchedule.code}"
+                        android:id="@+id/name"
+                        android:text="@{args.editSchedule.name}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
                         android:fontFamily="@font/poppins"
-                        android:labelFor="@id/code"
+                        android:labelFor="@id/name"
                         android:paddingStart="15dp"
                         android:paddingEnd="0dp"
                         android:textSize="15sp" />

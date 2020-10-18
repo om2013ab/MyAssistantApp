@@ -5,7 +5,7 @@
     <data>
         <variable
             name="timetableInfo"
-            type="com.omarahmed.myassistant.data.models.TimetableInfo" />
+            type="com.omarahmed.myassistant.timetable.TimetableInfo" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -96,25 +96,27 @@
                     android:layout_marginStart="80dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="135dp"
+                    android:contentDescription="TODO"
                     android:src="@drawable/ic_book"
                     app:layout_constraintEnd_toStartOf="@+id/imageVenue"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view"
-                    android:contentDescription="TODO" />
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
 
                 <TextView
                     android:id="@+id/txtCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins"
-                    android:text="@{timetableInfo.code}"
+                    android:maxLength="25"
+                    android:text="@{timetableInfo.name}"
                     android:textColor="@android:color/black"
                     android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="@+id/imageBook"
-                    app:layout_constraintStart_toStartOf="@+id/imageBook"
+                    app:layout_constraintStart_toStartOf="@id/imageBook"
                     app:layout_constraintTop_toBottomOf="@+id/imageBook"
-                    tools:text="MGM3211" />
+                    tools:text="omar ahmed obaidd bashaiwth" />
 
                 <ImageView
                     android:id="@+id/imageVenue"
@@ -133,17 +135,16 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:ellipsize="end"
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
-                    android:singleLine="true"
                     android:text="@{timetableInfo.venue}"
                     android:textColor="@android:color/black"
                     android:textSize="13sp"
+                    android:maxLength="13"
                     app:layout_constraintEnd_toEndOf="@+id/imageVenue"
                     app:layout_constraintStart_toStartOf="@+id/imageVenue"
                     app:layout_constraintTop_toBottomOf="@+id/imageVenue"
-                    tools:text="DKEP 6" />
+                    tools:text="Unknown venue" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
