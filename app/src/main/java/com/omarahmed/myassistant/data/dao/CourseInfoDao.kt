@@ -2,7 +2,7 @@ package com.omarahmed.myassistant.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.omarahmed.myassistant.data.models.CourseInfo
+import com.omarahmed.myassistant.home.CourseInfo
 
 @Dao
 interface CourseInfoDao {
