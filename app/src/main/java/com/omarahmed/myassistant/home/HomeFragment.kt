@@ -15,8 +15,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.omarahmed.myassistant.R
+import com.omarahmed.myassistant.alarmmanager.ScheduleAlarm.Companion.cancelAlarm
 import com.omarahmed.myassistant.assignment.AssignmentViewModel
-import com.omarahmed.myassistant.data.models.CourseInfo
 import com.omarahmed.myassistant.databinding.DialogAddCourseBinding
 import com.omarahmed.myassistant.databinding.FragmentHomeBinding
 import com.omarahmed.myassistant.databinding.SheetCourseInfoBinding
@@ -33,14 +33,16 @@ class HomeFragment : Fragment() {
     private val assignmentViewModel: AssignmentViewModel by viewModels()
     private val testViewModel: TestViewModel by viewModels()
     private val timetableViewModel: TimetableViewModel by viewModels()
+    private lateinit var assignmentAdapter: AssignmentHomeAdapter
+    private lateinit var testAdapter: TestHomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
-        val assignmentAdapter = AssignmentHomeAdapter()
-        val testAdapter = TestHomeAdapter()
+        assignmentAdapter = AssignmentHomeAdapter()
+        testAdapter = TestHomeAdapter()
         val coursesAdapter =
             CoursesAdapter(
                 CoursesAdapter.OnClickListener {
@@ -49,7 +51,7 @@ class HomeFragment : Fragment() {
         homeViewModel.showDataInBottomSheet.observe(viewLifecycleOwner, {
             setupBottomSheet(it)
         })
-        timetableViewModel.getScheduleToCheckEmpty.observe(viewLifecycleOwner,{
+        timetableViewModel.getScheduleToCheckEmpty.observe(viewLifecycleOwner, {
             timetableViewModel.checkEmptyTimetable(it)
         })
 
@@ -218,21 +220,29 @@ class HomeFragment : Fragment() {
             && homeViewModel.noCourses.value == false
             || assignmentViewModel.noAssignment.value == false
             || testViewModel.noTest.value == false
-            || timetableViewModel.emptyTimetable.value == false){
+            || timetableViewModel.emptyTimetable.value == false
+        ) {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Are you sure ?")
                 .setMessage("This will delete all current courses, schedules, assignments, and tests")
                 .setPositiveButton("YES") { _, _ ->
                     homeViewModel.deleteAllCourses()
-                    testViewModel.deleteAllTests()
                     assignmentViewModel.deleteAllAssignments()
+                    assignmentAdapter.assignmentList.currentList.forEach {
+                        cancelAlarm(requireContext(),it.id)
+                    }
+                    testViewModel.deleteAllTests()
+                    testAdapter.testList.currentList.forEach {
+                        cancelAlarm(requireContext(),it.id)
+                    }
                     timetableViewModel.deleteAllSchedules()
-                    Toast.makeText(requireContext(),"Successfully deleted",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Successfully deleted", Toast.LENGTH_SHORT)
+                        .show()
                 }
                 .setNegativeButton("NO") { _, _ -> }
                 .show()
-        }else {
-            Toast.makeText(requireContext(),"No thing to delete",Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "Nothing to delete", Toast.LENGTH_SHORT).show()
         }
         return false
     }
