@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.omarahmed.myassistant.R
-import com.omarahmed.myassistant.data.models.TestInfo
+import com.omarahmed.myassistant.test.TestInfo
 import com.omarahmed.myassistant.databinding.RvTestHomeBinding
 
 class TestHomeAdapter:RecyclerView.Adapter<TestHomeAdapter.TestViewHolder>() {
