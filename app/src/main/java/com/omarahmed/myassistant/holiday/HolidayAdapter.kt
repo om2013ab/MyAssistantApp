@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.omarahmed.myassistant.data.models.HolidayInfo
 import com.omarahmed.myassistant.databinding.RvHolidayLayoutBinding
 
 class HolidayAdapter: RecyclerView.Adapter<HolidayAdapter.HolidayViewHolder>() {
