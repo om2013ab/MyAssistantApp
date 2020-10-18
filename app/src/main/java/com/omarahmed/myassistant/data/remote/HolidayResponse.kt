@@ -1,6 +1,6 @@
 package com.omarahmed.myassistant.data.remote
 
-import com.omarahmed.myassistant.data.models.HolidayInfo
+import com.omarahmed.myassistant.holiday.HolidayInfo
 
 
 data class HolidayResponse(
