@@ -35,14 +35,14 @@ abstract class TextWatcher : TextWatcher {
         fun textChangedAssignment(view:FragmentAddAssignmentBinding){
             val onTextChanged = object : com.omarahmed.myassistant.utils.TextWatcher() {
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    view.btnAdd.isEnabled = view.codeAssignment.text.isNotEmpty()
+                    view.btnAdd.isEnabled = view.assignmentName.text.isNotEmpty()
                             && view.deadline.text!!.isNotEmpty()
                             && view.description.text!!.isNotEmpty()
 
                 }
             }
             view.apply {
-                codeAssignment.addTextChangedListener(onTextChanged)
+                assignmentName.addTextChangedListener(onTextChanged)
                 deadline.addTextChangedListener(onTextChanged)
                 description.addTextChangedListener(onTextChanged)
             }
@@ -50,13 +50,13 @@ abstract class TextWatcher : TextWatcher {
         fun textChangedTest(view: FragmentAddTestBinding){
             val onTextChanged = object : com.omarahmed.myassistant.utils.TextWatcher() {
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    view.btnAdd.isEnabled = view.codeTest.text.isNotEmpty()
+                    view.btnAdd.isEnabled = view.testName.text.isNotEmpty()
                             && view.testDate.text!!.isNotEmpty()
                             && view.testTime.text!!.isNotEmpty()
                 }
             }
             view.apply {
-                codeTest.addTextChangedListener(onTextChanged)
+                testName.addTextChangedListener(onTextChanged)
                 testDate.addTextChangedListener(onTextChanged)
                 testTime.addTextChangedListener(onTextChanged)
             }
@@ -64,13 +64,13 @@ abstract class TextWatcher : TextWatcher {
         fun textChangedTimetable(view: DialogAddSchedualBinding){
             val onTextChanged = object : com.omarahmed.myassistant.utils.TextWatcher() {
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    view.btnAdd.isEnabled = view.code.text.isNotEmpty()
+                    view.btnAdd.isEnabled = view.name.text.isNotEmpty()
                             && view.from.text!!.isNotEmpty()
                             && view.to.text!!.isNotEmpty()
                 }
             }
             view.apply {
-                code.addTextChangedListener(onTextChanged)
+                name.addTextChangedListener(onTextChanged)
                 from.addTextChangedListener(onTextChanged)
                 to.addTextChangedListener(onTextChanged)
             }
