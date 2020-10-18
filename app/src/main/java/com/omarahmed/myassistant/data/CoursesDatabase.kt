@@ -5,13 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.omarahmed.myassistant.data.dao.*
-import com.omarahmed.myassistant.data.models.*
-import com.omarahmed.myassistant.data.remote.CountriesResponse
+import com.omarahmed.myassistant.assignment.AssignmentInfo
+import com.omarahmed.myassistant.data.dao.AssignmentInfoDao
+import com.omarahmed.myassistant.data.dao.CourseInfoDao
+import com.omarahmed.myassistant.data.dao.TestInfoDao
+import com.omarahmed.myassistant.data.dao.TimetableDao
+import com.omarahmed.myassistant.home.CourseInfo
+import com.omarahmed.myassistant.test.TestInfo
+import com.omarahmed.myassistant.timetable.TimetableInfo
 
 @Database(
-    entities = [CourseInfo::class, AssignmentInfo::class,TestInfo::class, TimetableInfo::class, CountriesResponse.Countries.CountriesInfo::class, HolidayInfo::class],
-    version = 3,
+    entities = [CourseInfo::class, AssignmentInfo::class, TestInfo::class, TimetableInfo::class],
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(Converter::class)
@@ -20,12 +25,6 @@ abstract class CoursesDatabase : RoomDatabase() {
     abstract fun assignmentInfoDao(): AssignmentInfoDao
     abstract fun testInfoDao(): TestInfoDao
     abstract fun timetableDao(): TimetableDao
-    abstract fun countriesDao(): CountriesDao
-    abstract fun holidayDao(): HolidayDao
-
-
-
-
     companion object {
         @Volatile
         private var INSTANCE: CoursesDatabase? = null
