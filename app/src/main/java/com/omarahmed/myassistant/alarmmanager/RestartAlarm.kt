@@ -6,8 +6,8 @@ import android.os.IBinder
 import androidx.lifecycle.LiveData
 import com.omarahmed.myassistant.alarmmanager.ScheduleAlarm.Companion.startAlarm
 import com.omarahmed.myassistant.data.CoursesDatabase
-import com.omarahmed.myassistant.data.models.AssignmentInfo
-import com.omarahmed.myassistant.data.models.TestInfo
+import com.omarahmed.myassistant.assignment.AssignmentInfo
+import com.omarahmed.myassistant.test.TestInfo
 import com.omarahmed.myassistant.data.repository.AssignmentRepository
 import com.omarahmed.myassistant.data.repository.TestRepository
 import com.omarahmed.myassistant.utils.Constants.Companion.DATE_PATTERN
