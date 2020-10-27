@@ -14,7 +14,6 @@ import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
 import com.omarahmed.myassistant.MainActivity
 import com.omarahmed.myassistant.R
-import com.omarahmed.myassistant.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_on_boarding.*
 
 class OnBoarding : AppCompatActivity() {
@@ -55,7 +54,6 @@ class OnBoarding : AppCompatActivity() {
         viewPager.adapter = onBoardingAdapter
         setUpIndicators()
         setCurrentIndicators(0)
-        handleTheOnBoarding()
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -76,15 +74,6 @@ class OnBoarding : AppCompatActivity() {
             startActivity(Intent(this,MainActivity::class.java))
             finish()
         }
-    }
-
-    private fun handleTheOnBoarding() {
-        val firstRun = SharedPreference(this).getBooleanValue("isFirstRun",true)
-        if (!firstRun){
-            startActivity(Intent(this,MainActivity::class.java))
-            finish()
-        }
-        SharedPreference(this).putBooleanValue("isFirstRun",false)
     }
 
     private fun setUpIndicators() {
