@@ -29,7 +29,7 @@
             app:tabGravity="fill"
             app:tabIndicatorColor="@android:color/white"
             app:tabMaxWidth="0dp"
-            app:tabMode="fixed"
+            app:tabMode="scrollable"
             app:tabTextColor="@android:color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
