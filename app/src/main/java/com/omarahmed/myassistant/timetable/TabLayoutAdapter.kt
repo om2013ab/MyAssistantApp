@@ -13,11 +13,13 @@ class TabLayoutAdapter(fm: FragmentManager): FragmentPagerAdapter(fm,
             1 -> TuesFragment()
             2 -> WedFragment()
             3 -> ThurFragment()
-            else -> FriFragment()
+            4 -> FriFragment()
+            5-> SatFragment()
+            else -> SunFragment()
         }
     }
 
-    override fun getCount() = 5
+    override fun getCount() = 7
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when(position){
@@ -25,7 +27,9 @@ class TabLayoutAdapter(fm: FragmentManager): FragmentPagerAdapter(fm,
             1-> "Tues"
             2-> "Wed"
             3-> "Thur"
-            else-> "Fri"
+            4-> "Fri"
+            5-> "Sat"
+            else -> "Sun"
         }
     }
 }
