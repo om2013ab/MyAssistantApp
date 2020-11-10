@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.omarahmed.myassistant.R
 import com.omarahmed.myassistant.alarmmanager.ScheduleAlarm.Companion.startAlarm
 import com.omarahmed.myassistant.databinding.FragmentAddTestBinding
@@ -27,6 +28,7 @@ import kotlin.collections.ArrayList
 
 class AddTestFragment : Fragment() {
     private lateinit var binding: FragmentAddTestBinding
+    private val args: AddTestFragmentArgs by navArgs()
     private val homeViewModel: HomeViewModel by viewModels()
     private val testViewModel: TestViewModel by viewModels()
     private var notificationDate: Calendar? = null
@@ -63,6 +65,7 @@ class AddTestFragment : Fragment() {
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
+        binding.testArgs = args
         return binding.root
     }
 

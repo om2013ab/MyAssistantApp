@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.omarahmed.myassistant.R
 import com.omarahmed.myassistant.alarmmanager.ScheduleAlarm.Companion.startAlarm
 import com.omarahmed.myassistant.databinding.FragmentAddAssignmentBinding
@@ -26,6 +27,7 @@ import kotlin.collections.ArrayList
 
 class AddAssignmentFragment : Fragment() {
     private lateinit var binding: FragmentAddAssignmentBinding
+    private val args: AddAssignmentFragmentArgs by navArgs()
     private val homeViewModel: HomeViewModel by viewModels()
     private val assignmentViewModel: AssignmentViewModel by viewModels()
     private var notificationDate: Calendar? = null
@@ -43,6 +45,7 @@ class AddAssignmentFragment : Fragment() {
         binding.btnAdd.setOnClickListener {
             insertAssignments()
         }
+
         binding.switchAssignment.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 binding.notificationDateLayout.visibility = View.VISIBLE
@@ -63,6 +66,7 @@ class AddAssignmentFragment : Fragment() {
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
+        binding.assignmentArgs = args
         return binding.root
     }
 
