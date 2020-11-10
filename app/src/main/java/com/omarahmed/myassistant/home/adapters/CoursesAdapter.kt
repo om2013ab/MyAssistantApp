@@ -1,31 +1,56 @@
 package com.omarahmed.myassistant.home.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.omarahmed.myassistant.home.CourseInfo
 import com.omarahmed.myassistant.databinding.RvCoursesLayoutBinding
+import com.omarahmed.myassistant.home.CourseInfo
 
-class CoursesAdapter(private val onClickListener: OnClickListener): RecyclerView.Adapter<CoursesAdapter.CourseViewHolder>() {
-    object DiffCallback:DiffUtil.ItemCallback<CourseInfo>() {
+class CoursesAdapter(
+    private val listener: OnCourseClickListener
+) : RecyclerView.Adapter<CoursesAdapter.CourseViewHolder>() {
+    object DiffCallback : DiffUtil.ItemCallback<CourseInfo>() {
         override fun areItemsTheSame(oldItem: CourseInfo, newItem: CourseInfo): Boolean {
             return oldItem.courseId == newItem.courseId
         }
 
         override fun areContentsTheSame(oldItem: CourseInfo, newItem: CourseInfo): Boolean {
-           return oldItem == newItem
+            return oldItem == newItem
         }
 
     }
-    val coursesList = AsyncListDiffer(this,
+    val coursesList = AsyncListDiffer(
+        this,
         DiffCallback
     )
-    class CourseViewHolder(private val binding: RvCoursesLayoutBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(courseInfo: CourseInfo){
+
+    inner class CourseViewHolder(private val binding: RvCoursesLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener,View.OnLongClickListener{
+        fun bind(courseInfo: CourseInfo) {
             binding.courseInfo = courseInfo
             binding.executePendingBindings()
+        }
+        init {
+            binding.root.setOnClickListener(this)
+            binding.root.setOnLongClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onCourseClick(coursesList.currentList[position])
+            }
+        }
+
+        override fun onLongClick(p0: View?): Boolean {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION){
+                listener.onLongCourseClick(coursesList.currentList[position])
+            }
+            return true
         }
     }
 
@@ -37,16 +62,13 @@ class CoursesAdapter(private val onClickListener: OnClickListener): RecyclerView
         )
     }
 
-
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
         val currentCourse = coursesList.currentList[position]
         holder.bind(currentCourse)
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(currentCourse)
-        }
-    }
-    class OnClickListener(val clickListener:(courseInfo: CourseInfo)-> Unit){
-        fun onClick(courseInfo: CourseInfo) = clickListener(courseInfo)
     }
 
+    interface OnCourseClickListener {
+        fun onCourseClick(courseInfo: CourseInfo)
+        fun onLongCourseClick(courseInfo: CourseInfo)
+    }
 }
