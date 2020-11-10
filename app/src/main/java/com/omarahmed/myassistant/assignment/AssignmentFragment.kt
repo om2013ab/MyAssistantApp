@@ -30,7 +30,7 @@ class AssignmentFragment : Fragment() {
             assignmentAdapter.assignmentList.submitList(it)
         })
         binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_assignmentFragment_to_addAssignmentFragment2)
+            findNavController().navigate(R.id.action_assignmentFragment_to_addAssignmentFragment)
         }
         binding.lifecycleOwner = this
         binding.assignmentViewModel = assignmentViewModel
