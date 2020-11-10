@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dialog_add_course">
+    <TextView
+        android:id="@+id/add_assignment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add assignment"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider_color"/>
+    <TextView
+        android:id="@+id/add_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add test"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider_color"/>
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CANCEL"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/colorPrimary"/>
+</LinearLayout>
