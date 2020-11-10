@@ -17,10 +17,6 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
 
     val getAllCourses:LiveData<List<CourseInfo>>
 
-    private val _showDataInBottomSheet = MutableLiveData<CourseInfo>()
-    val showDataInBottomSheet: LiveData<CourseInfo>
-        get() = _showDataInBottomSheet
-
     private val _noCourses = MutableLiveData(false)
     val noCourses: LiveData<Boolean>
         get() = _noCourses
@@ -54,10 +50,6 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             homeRepository.deleteAllCourses()
         }
-    }
-
-    fun bottomSheetInfo(courseInfo: CourseInfo){
-        _showDataInBottomSheet.value = courseInfo
     }
 
     fun checkCoursesEmpty(courseInfo: List<CourseInfo>){

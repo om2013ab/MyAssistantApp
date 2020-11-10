@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -26,8 +27,9 @@ import com.omarahmed.myassistant.home.adapters.TestHomeAdapter
 import com.omarahmed.myassistant.test.TestViewModel
 import com.omarahmed.myassistant.timetable.TimetableViewModel
 import com.omarahmed.myassistant.utils.TextWatcher
+import kotlinx.android.synthetic.main.dialog_long_press_course.view.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),CoursesAdapter.OnCourseClickListener {
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
     private val assignmentViewModel: AssignmentViewModel by viewModels()
@@ -35,6 +37,7 @@ class HomeFragment : Fragment() {
     private val timetableViewModel: TimetableViewModel by viewModels()
     private lateinit var assignmentAdapter: AssignmentHomeAdapter
     private lateinit var testAdapter: TestHomeAdapter
+    private lateinit var coursesAdapter: CoursesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,14 +46,8 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater)
         assignmentAdapter = AssignmentHomeAdapter()
         testAdapter = TestHomeAdapter()
-        val coursesAdapter =
-            CoursesAdapter(
-                CoursesAdapter.OnClickListener {
-                    homeViewModel.bottomSheetInfo(it)
-                })
-        homeViewModel.showDataInBottomSheet.observe(viewLifecycleOwner, {
-            setupBottomSheet(it)
-        })
+        coursesAdapter = CoursesAdapter(this)
+
         timetableViewModel.getScheduleToCheckEmpty.observe(viewLifecycleOwner, {
             timetableViewModel.checkEmptyTimetable(it)
         })
@@ -68,6 +65,39 @@ class HomeFragment : Fragment() {
         binding.assignmentViewModel = assignmentViewModel
         binding.testViewModel = testViewModel
         return binding.root
+    }
+
+    override fun onCourseClick(courseInfo: CourseInfo) {
+        setupBottomSheet(courseInfo)
+    }
+
+    override fun onLongCourseClick(courseInfo: CourseInfo) {
+        setupLongPressDialog(courseInfo)
+    }
+
+    private fun setupLongPressDialog(courseInfo: CourseInfo) {
+        val builder = AlertDialog.Builder(requireContext())
+        val view = layoutInflater.inflate(R.layout.dialog_long_press_course, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.apply {
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            show()
+        }
+        view.add_assignment.setOnClickListener {
+            val action =
+                HomeFragmentDirections.actionHomeFragmentToAddAssignmentFragment(courseInfo)
+            findNavController().navigate(action)
+            dialog.dismiss()
+        }
+        view.add_test.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToAddTestFragment(courseInfo)
+            findNavController().navigate(action)
+            dialog.dismiss()
+        }
+        view.cancel.setOnClickListener {
+            dialog.dismiss()
+        }
     }
 
     private fun setupToolbar() {
@@ -229,11 +259,11 @@ class HomeFragment : Fragment() {
                     homeViewModel.deleteAllCourses()
                     assignmentViewModel.deleteAllAssignments()
                     assignmentAdapter.assignmentList.currentList.forEach {
-                        cancelAlarm(requireContext(),it.id)
+                        cancelAlarm(requireContext(), it.id)
                     }
                     testViewModel.deleteAllTests()
                     testAdapter.testList.currentList.forEach {
-                        cancelAlarm(requireContext(),it.id)
+                        cancelAlarm(requireContext(), it.id)
                     }
                     timetableViewModel.deleteAllSchedules()
                     Toast.makeText(requireContext(), "Successfully deleted", Toast.LENGTH_SHORT)
