@@ -128,7 +128,7 @@ class AddAssignmentFragment : Fragment() {
             } else {
                 val newAssignment = AssignmentInfo(id, name, deadline, description, notify,notificationDate?.time)
                 assignmentViewModel.insertAssignment(newAssignment)
-                findNavController().navigate(R.id.action_addAssignmentFragment2_to_assignmentFragment)
+                findNavController().navigate(R.id.action_addAssignmentFragment_to_assignmentFragment)
                 notificationDate?.let {
                     startAlarm(requireContext(),id,it.timeInMillis,name,binding.deadline.text.toString(),"assignment")
                 }
