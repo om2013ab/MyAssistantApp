@@ -16,6 +16,13 @@
         <action
             android:id="@+id/action_homeFragment_to_testFragment"
             app:destination="@id/testFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_addAssignmentFragment"
+            app:destination="@id/addAssignmentFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_addTestFragment"
+            app:destination="@id/addTestFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/assignmentFragment"
@@ -24,10 +31,18 @@
         tools:layout="@layout/fragment_assignment" >
         <action
             android:id="@+id/action_assignmentFragment_to_showAssignmentFragment"
-            app:destination="@id/showAssignmentFragment" />
+            app:destination="@id/showAssignmentFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
-            android:id="@+id/action_assignmentFragment_to_addAssignmentFragment2"
-            app:destination="@id/addAssignmentFragment2" />
+            android:id="@+id/action_assignmentFragment_to_addAssignmentFragment"
+            app:destination="@id/addAssignmentFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom"/>
     </fragment>
     <fragment
         android:id="@+id/testFragment"
@@ -36,10 +51,18 @@
         tools:layout="@layout/fragment_test" >
         <action
             android:id="@+id/action_testFragment_to_showTestFragment"
-            app:destination="@id/showTestFragment" />
+            app:destination="@id/showTestFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_testFragment_to_addTestFragment"
-            app:destination="@id/addTestFragment" />
+            app:destination="@id/addTestFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom"/>
     </fragment>
     <fragment
         android:id="@+id/holidayFragment"
@@ -101,12 +124,18 @@
             app:destination="@id/holidayFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addAssignmentFragment2"
+        android:id="@+id/addAssignmentFragment"
         android:name="com.omarahmed.myassistant.assignment.AddAssignmentFragment"
         android:label="AddAssignmentFragment" >
         <action
-            android:id="@+id/action_addAssignmentFragment2_to_assignmentFragment"
-            app:destination="@id/assignmentFragment" />
+            android:id="@+id/action_addAssignmentFragment_to_assignmentFragment"
+            app:destination="@id/assignmentFragment"
+            app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="addAssignment"
+            app:argType="com.omarahmed.myassistant.home.CourseInfo"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/addTestFragment"
@@ -114,6 +143,12 @@
         android:label="AddTestFragment" >
         <action
             android:id="@+id/action_addTestFragment_to_testFragment"
-            app:destination="@id/testFragment" />
+            app:destination="@id/testFragment"
+            app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="addTest"
+            app:argType="com.omarahmed.myassistant.home.CourseInfo"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>
