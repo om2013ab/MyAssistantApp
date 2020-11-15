@@ -29,6 +29,7 @@ import com.omarahmed.myassistant.timetable.TimetableViewModel
 import com.omarahmed.myassistant.utils.TextWatcher
 import kotlinx.android.synthetic.main.dialog_long_press_course.view.*
 
+
 class HomeFragment : Fragment(),CoursesAdapter.OnCourseClickListener {
     private lateinit var binding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
@@ -52,14 +53,14 @@ class HomeFragment : Fragment(),CoursesAdapter.OnCourseClickListener {
             timetableViewModel.checkEmptyTimetable(it)
         })
 
-        binding.addCourse.setOnClickListener {
-            showAddDialog()
-        }
-
+        homeViewModel.getAllCourses.observe(viewLifecycleOwner, {
+            homeViewModel.checkCoursesEmpty(it)
+            coursesAdapter.addHeaderAndSubmitList(it)
+        })
         setupToolbar()
-        setCoursesRecyclerView(coursesAdapter)
-        setAssignmentsRecyclerView(assignmentAdapter)
-        setTestRecyclerView(testAdapter)
+        setCoursesRecyclerView()
+        setAssignmentsRecyclerView()
+        setTestRecyclerView()
         binding.lifecycleOwner = this
         binding.homeViewModel = homeViewModel
         binding.assignmentViewModel = assignmentViewModel
@@ -73,6 +74,10 @@ class HomeFragment : Fragment(),CoursesAdapter.OnCourseClickListener {
 
     override fun onLongCourseClick(courseInfo: CourseInfo) {
         setupLongPressDialog(courseInfo)
+    }
+
+    override fun onAddCourseClick() {
+        showAddDialog()
     }
 
     private fun setupLongPressDialog(courseInfo: CourseInfo) {
@@ -106,15 +111,13 @@ class HomeFragment : Fragment(),CoursesAdapter.OnCourseClickListener {
     }
 
 
-    private fun setCoursesRecyclerView(coursesAdapter: CoursesAdapter) {
+    private fun setCoursesRecyclerView() {
         binding.rvCourses.adapter = coursesAdapter
-        homeViewModel.getAllCourses.observe(viewLifecycleOwner, {
-            homeViewModel.checkCoursesEmpty(it)
-            coursesAdapter.coursesList.submitList(it)
-        })
+        binding.rvCourses.hasFixedSize()
+
     }
 
-    private fun setAssignmentsRecyclerView(assignmentAdapter: AssignmentHomeAdapter) {
+    private fun setAssignmentsRecyclerView() {
         binding.rvAssignments.adapter = assignmentAdapter
         assignmentViewModel.getAllAssignment.observe(viewLifecycleOwner, {
             assignmentViewModel.checkDatabaseEmpty(it)
@@ -122,7 +125,7 @@ class HomeFragment : Fragment(),CoursesAdapter.OnCourseClickListener {
         })
     }
 
-    private fun setTestRecyclerView(testAdapter: TestHomeAdapter) {
+    private fun setTestRecyclerView() {
         binding.rvTests.adapter = testAdapter
         testViewModel.getAllTests.observe(viewLifecycleOwner, {
             testViewModel.checkTestEmpty(it)
@@ -168,7 +171,6 @@ class HomeFragment : Fragment(),CoursesAdapter.OnCourseClickListener {
         val view = SheetCourseInfoBinding.inflate(LayoutInflater.from(activity))
         bottomSheet.apply {
             setContentView(view.root)
-
             show()
         }
         view.aboutCourse = currentCourse

@@ -18,11 +18,11 @@
             type="com.omarahmed.myassistant.test.TestViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/lightGray"
-        tools:context=".home.HomeFragment">
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -30,101 +30,54 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:title="Dashboard" />
 
-        <ScrollView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            app:layout_constraintVertical_bias="0.0">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewCourses"
+                style="@style/homeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/courses" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_courses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="4"
+                tools:listitem="@layout/rv_courses_layout">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/assignmentViewGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:id="@+id/textViewCourses"
-                    style="@style/homeText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/courses"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <HorizontalScrollView
-                    android:id="@+id/courseViewGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:scrollbars="none"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textViewCourses">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rv_courses"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:clipToPadding="false"
-                            android:orientation="horizontal"
-                            android:paddingStart="0dp"
-                            android:paddingEnd="10dp"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:itemCount="4"
-                            tools:listitem="@layout/rv_courses_layout" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/add_course"
-                            android:layout_width="130dp"
-                            android:layout_height="100dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginEnd="10dp"
-                            app:cardBackgroundColor="@color/colorPrimary"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="0dp">
-
-                            <ImageView
-                                android:layout_width="45dp"
-                                android:layout_height="45dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_add_circle"
-                                app:tint="@android:color/white" />
-
-
-                        </androidx.cardview.widget.CardView>
-                    </LinearLayout>
-
-                </HorizontalScrollView>
-
+                android:layout_marginTop="50dp">
 
                 <View
                     android:id="@+id/divider1"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginStart="13dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="15dp"
                     android:background="@color/divider_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/assignmentTxt"
-                    app:layout_constraintTop_toBottomOf="@id/courseViewGroup" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/assignmentTxt"
@@ -148,65 +101,62 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/assignmentTxt" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/assignmentViewGroup"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_assignments"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/assignmentTxt">
+                    app:layout_constraintTop_toBottomOf="@+id/assignmentTxt"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/rv_assignments_home" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_assignments"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:orientation="horizontal"
-                        android:paddingStart="0dp"
-                        android:paddingEnd="10dp"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:itemCount="4"
-                        tools:listitem="@layout/rv_assignments_home" />
+                <ImageView
+                    android:id="@+id/noAssignmentIcon"
+                    checkEmpty="@{assignmentViewModel.noAssignment}"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="50dp"
+                    android:alpha=".40"
+                    android:src="@drawable/ic_empty_folder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/assignmentTxt" />
 
-                    <ImageView
-                        android:id="@+id/noAssignmentIcon"
-                        checkEmpty="@{assignmentViewModel.noAssignment}"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="30dp"
-                        android:alpha=".40"
-                        android:src="@drawable/ic_empty_folder"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/noAssignment"
+                    checkEmpty="@{assignmentViewModel.noAssignment}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:alpha=".60"
+                    android:text="There is no any assignment"
+                    app:layout_constraintEnd_toEndOf="@id/noAssignmentIcon"
+                    app:layout_constraintStart_toStartOf="@id/noAssignmentIcon"
+                    app:layout_constraintTop_toBottomOf="@id/noAssignmentIcon" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                        android:id="@+id/noAssignment"
-                        checkEmpty="@{assignmentViewModel.noAssignment}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:alpha=".60"
-                        android:text="There is no any assignment"
-                        app:layout_constraintEnd_toEndOf="@id/noAssignmentIcon"
-                        app:layout_constraintStart_toStartOf="@id/noAssignmentIcon"
-                        app:layout_constraintTop_toBottomOf="@id/noAssignmentIcon" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp">
 
                 <View
                     android:id="@+id/divider3"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginStart="13dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="15dp"
                     android:background="@color/divider_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/testTxt"
-                    app:layout_constraintTop_toBottomOf="@id/assignmentViewGroup" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/testTxt"
@@ -230,60 +180,48 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/testTxt" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/textViewGroup"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_tests"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="30dp"
+                    android:layout_marginTop="20dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/testTxt">
+                    app:layout_constraintTop_toBottomOf="@id/testTxt"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/rv_test_home" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_tests"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:orientation="horizontal"
-                        android:paddingStart="0dp"
-                        android:paddingEnd="10dp"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:itemCount="4"
-                        tools:listitem="@layout/rv_test_home" />
+                <ImageView
+                    android:id="@+id/noTestIcon"
+                    checkEmpty="@{testViewModel.noTest}"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="50dp"
+                    android:alpha=".40"
+                    android:src="@drawable/ic_empty_folder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/testTxt" />
 
-                    <ImageView
-                        android:id="@+id/noTestIcon"
-                        checkEmpty="@{testViewModel.noTest}"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="30dp"
-                        android:alpha=".40"
-                        android:src="@drawable/ic_empty_folder"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/noTest"
-                        checkEmpty="@{testViewModel.noTest}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:alpha=".60"
-                        android:text="There is no any test"
-                        app:layout_constraintEnd_toEndOf="@id/noTestIcon"
-                        app:layout_constraintStart_toStartOf="@id/noTestIcon"
-                        app:layout_constraintTop_toBottomOf="@id/noTestIcon" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                <TextView
+                    android:id="@+id/noTest"
+                    checkEmpty="@{testViewModel.noTest}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:alpha=".60"
+                    android:text="There is no any test"
+                    app:layout_constraintEnd_toEndOf="@id/noTestIcon"
+                    app:layout_constraintStart_toStartOf="@id/noTestIcon"
+                    app:layout_constraintTop_toBottomOf="@id/noTestIcon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </ScrollView>
+        </LinearLayout>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

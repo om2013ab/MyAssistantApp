@@ -41,7 +41,7 @@
             <TextView
                 android:id="@+id/courseName"
                 android:layout_width="130dp"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
                 android:layout_gravity="bottom"
                 android:background="@color/colorPrimary"
                 android:ellipsize="end"
