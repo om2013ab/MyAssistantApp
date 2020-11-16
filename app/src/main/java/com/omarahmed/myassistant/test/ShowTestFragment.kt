@@ -159,6 +159,7 @@ class ShowTestFragment : Fragment() {
                     timeLayout.isEnabled = true
                     chaptersLayout.isEnabled = true
                     showSwitchTest.isEnabled = true
+                    notificationTestDate.isEnabled = true
                 }
             }
             R.id.delete -> {
