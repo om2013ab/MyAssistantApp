@@ -20,23 +20,23 @@ class OnBoarding : AppCompatActivity() {
     private val onBoardingAdapter = OnBoardingAdapter(
         listOf(
             OnBoardingData(
-                "My Assistant",
-                "Your assistant app through out your university journey",
+                getString(R.string.onBoarding_title1),
+                getString(R.string.onBoarding_description1),
                 R.drawable.ic_assistant
             ),
             OnBoardingData(
-                "Don't miss Anything",
-                "Don't worry to miss anything, all your timetables, tests, and assignments are in one place",
+                getString(R.string.onBoarding_title2),
+                getString(R.string.onBoarding_description2),
                 R.drawable.ic_do_not_miss
             ),
             OnBoardingData(
-                "Get Notifications",
-                "My assistant app will notify you with the upcoming assignment deadlines and test dates",
+                getString(R.string.onBoarding_title3),
+                getString(R.string.onBoarding_description3),
                 R.drawable.ic_get_notification
             ),
             OnBoardingData(
-                "Holidays",
-                "Stay tuned with the upcoming holidays so that you can make your plan accordingly",
+                getString(R.string.onBoarding_title4),
+                getString(R.string.onBoarding_description4),
                 R.drawable.ic_holidays
             )
         )
