@@ -17,35 +17,35 @@ import com.omarahmed.myassistant.R
 import kotlinx.android.synthetic.main.activity_on_boarding.*
 
 class OnBoarding : AppCompatActivity() {
-    private val onBoardingAdapter = OnBoardingAdapter(
-        listOf(
-            OnBoardingData(
-                getString(R.string.onBoarding_title1),
-                getString(R.string.onBoarding_description1),
-                R.drawable.ic_assistant
-            ),
-            OnBoardingData(
-                getString(R.string.onBoarding_title2),
-                getString(R.string.onBoarding_description2),
-                R.drawable.ic_do_not_miss
-            ),
-            OnBoardingData(
-                getString(R.string.onBoarding_title3),
-                getString(R.string.onBoarding_description3),
-                R.drawable.ic_get_notification
-            ),
-            OnBoardingData(
-                getString(R.string.onBoarding_title4),
-                getString(R.string.onBoarding_description4),
-                R.drawable.ic_holidays
-            )
-        )
-    )
+    private lateinit var onBoardingAdapter: OnBoardingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_on_boarding)
-
+        onBoardingAdapter = OnBoardingAdapter(
+            listOf(
+                OnBoardingData(
+                    getString(R.string.onBoarding_title1),
+                    getString(R.string.onBoarding_description1),
+                    R.drawable.ic_assistant
+                ),
+                OnBoardingData(
+                    getString(R.string.onBoarding_title2),
+                    getString(R.string.onBoarding_description2),
+                    R.drawable.ic_do_not_miss
+                ),
+                OnBoardingData(
+                    getString(R.string.onBoarding_title3),
+                    getString(R.string.onBoarding_description3),
+                    R.drawable.ic_get_notification
+                ),
+                OnBoardingData(
+                    getString(R.string.onBoarding_title4),
+                    getString(R.string.onBoarding_description4),
+                    R.drawable.ic_holidays
+                )
+            )
+        )
         // to make status bar transparent
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
