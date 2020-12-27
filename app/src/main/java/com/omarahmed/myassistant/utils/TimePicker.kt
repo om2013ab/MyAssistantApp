@@ -13,8 +13,7 @@ class TimePicker {
         fun timePickerDialog(view: TextInputEditText, context: Context) {
             val instance = Calendar.getInstance()
             TimePickerDialog(
-                context,
-                TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                context, { _, hourOfDay, minute ->
                     val selectedTime = Calendar.getInstance()
                     selectedTime.apply {
                         set(Calendar.HOUR_OF_DAY,hourOfDay)

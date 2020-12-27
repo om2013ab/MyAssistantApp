@@ -48,4 +48,12 @@
     <string name="total_holidays">Total holidays</string>
     <string name="notification_date">Notification date</string>
     <string name="no_holidays_in_this_month">No holidays in this month</string>
+    <string name="onBoarding_title1">My Assistant</string>
+    <string name="onBoarding_description1">Your assistant app through out your university journey</string>
+    <string name="onBoarding_description2">Don\'t worry to miss anything, all your timetables, tests, and assignments are in one place</string>
+    <string name="onBoarding_description3">My assistant app will notify you with the upcoming assignment deadlines and test dates</string>
+    <string name="onBoarding_description4">Stay tuned with the upcoming holidays so that you can make your plan accordingly</string>
+    <string name="onBoarding_title2">Don\'t miss Anything</string>
+    <string name="onBoarding_title3">Get Notifications</string>
+    <string name="onBoarding_title4">Holidays</string>
 </resources>
