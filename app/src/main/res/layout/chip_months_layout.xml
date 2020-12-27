@@ -24,6 +24,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="1"
             android:text="Jan" />
 
         <com.google.android.material.chip.Chip
@@ -31,6 +32,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="2"
             android:text="Feb" />
 
         <com.google.android.material.chip.Chip
@@ -38,6 +40,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="3"
             android:text="Mar" />
 
         <com.google.android.material.chip.Chip
@@ -45,6 +48,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="4"
             android:text="Apr" />
 
         <com.google.android.material.chip.Chip
@@ -52,6 +56,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="5"
             android:text="May" />
 
         <com.google.android.material.chip.Chip
@@ -59,6 +64,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="6"
             android:text="Jun" />
 
         <com.google.android.material.chip.Chip
@@ -66,6 +72,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="7"
             android:text="Jul" />
 
         <com.google.android.material.chip.Chip
@@ -73,6 +80,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="8"
             android:text="Aug" />
 
         <com.google.android.material.chip.Chip
@@ -80,6 +88,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="9"
             android:text="Sep" />
 
         <com.google.android.material.chip.Chip
@@ -87,6 +96,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="10"
             android:text="Oct" />
 
         <com.google.android.material.chip.Chip
@@ -94,6 +104,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="11"
             android:text="Nov" />
 
         <com.google.android.material.chip.Chip
@@ -101,6 +112,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="12"
             android:text="Dec" />
     </com.google.android.material.chip.ChipGroup>
 </HorizontalScrollView>

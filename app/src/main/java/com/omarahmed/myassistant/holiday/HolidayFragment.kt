@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.omarahmed.myassistant.R
 import com.omarahmed.myassistant.data.remote.HolidayResponse
@@ -92,45 +93,10 @@ class HolidayFragment : Fragment() {
     }
 
     private fun handlePickMonth(view: View,countryCode: String?){
-        view.chip_group.setOnCheckedChangeListener { _, checkedId ->
-          when(checkedId){
-              R.id.chipJan -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,1)
-              }
-              R.id.chipFeb -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,2)
-              }
-              R.id.chipMar -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,3)
-              }
-              R.id.chipApr -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,4)
-              }
-              R.id.chipMay -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,5)
-              }
-              R.id.chipJun -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,6)
-              }
-              R.id.chipJul -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,7)
-              }
-              R.id.chipAug -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,8)
-              }
-              R.id.chipSep -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,9)
-              }
-              R.id.chipOct -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,10)
-              }
-              R.id.chipNov -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,11)
-              }
-              R.id.chipDec -> {
-                  holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,12)
-              }
-          }
+        view.chip_group.setOnCheckedChangeListener { group, checkedId ->
+            val chip = group.findViewById<Chip>(checkedId)
+            val monthNumber = Integer.parseInt(chip.tag.toString())
+            holidayViewModel.getHolidaysFromApi(countryCode, CURRENT_YEAR,monthNumber)
         }
     }
 
