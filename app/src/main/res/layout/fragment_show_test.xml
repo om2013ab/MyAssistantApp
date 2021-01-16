@@ -99,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/textInputStyle"
-                    android:hint="@string/chapters_recovered">
+                    android:hint="@string/chapters_covered">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/showChapters"

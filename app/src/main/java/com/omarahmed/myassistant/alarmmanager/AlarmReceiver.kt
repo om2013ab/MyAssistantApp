@@ -13,7 +13,7 @@ import com.omarahmed.myassistant.R
 import com.omarahmed.myassistant.utils.Constants
 import com.omarahmed.myassistant.utils.Constants.Companion.NOTIFICATION_ID
 
-class AlarmReceiver : BroadcastReceiver() {
+class  AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
         if (Intent.ACTION_BOOT_COMPLETED == intent?.action) {
             val i = Intent(context, RestartAlarm::class.java)

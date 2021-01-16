@@ -29,7 +29,7 @@
     <string name="delete_all">Delete all</string>
     <string name="fill_out_to_add_a_new_course">Fill out to add a new course</string>
     <string name="date">Date</string>
-    <string name="chapters_recovered">Chapters recovered</string>
+    <string name="chapters_covered">Chapters covered</string>
     <string name="time">Time</string>
     <string name="adding_a_new_test">Adding a new test</string>
     <string name="about_the_test">About the test</string>

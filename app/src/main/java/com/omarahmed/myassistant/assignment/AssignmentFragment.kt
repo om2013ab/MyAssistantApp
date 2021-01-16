@@ -18,7 +18,7 @@ class AssignmentFragment : Fragment() {
     private lateinit var assignmentAdapter: AssignmentAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         // Inflate the layout for this fragment
         val binding = FragmentAssignmentBinding.inflate(inflater)
