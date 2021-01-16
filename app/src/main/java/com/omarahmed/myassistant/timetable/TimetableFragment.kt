@@ -19,7 +19,7 @@ class TimetableFragment : Fragment(R.layout.fragment_timetable){
     private val timetableViewModel: TimetableViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        toolbarTimetable.elevation = 0f
         val fragments = arrayListOf(
             MonFragment(),
             TuesFragment(),
