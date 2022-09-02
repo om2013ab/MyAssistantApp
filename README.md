@@ -9,6 +9,8 @@ The following are the functions of this app:
 
 # Screenshots:
 
-Home Screen               |  Timetable Screen              | Assignments Screen       | Tests Screen             | Holidays Screen
-:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="https://play-lh.googleusercontent.com/p-OyvKRG40gXPVdawoD1FmAHh6nYf0U21_AdS4rS-FlRoyBozWkFci-ipyf_zR0dvA=w2560-h1440-rw" width="200" height="400" /> | <img src="https://github.com/om2013ab/GetNews2/blob/master/screenshot_2.jpeg" width="200" height="400" /> | <img src="https://github.com/om2013ab/GetNews2/blob/master/screenshot_3.jpeg" width="200" height="400" />
+Home Screen               |  Timetable Screen              | Assignments Screen   
+:-------------------------:|:-------------------------:|:-------------------------:
+Tests Screen              |  Holidays Screen
+:-------------------------:|:-------------------------:
+<img src="https://play-lh.googleusercontent.com/p-OyvKRG40gXPVdawoD1FmAHh6nYf0U21_AdS4rS-FlRoyBozWkFci-ipyf_zR0dvA=w2560-h1440-rw" width="200" height="400" /> | <img src="https://play-lh.googleusercontent.com/xdPGMqIHHHOVoDzsXBQvx_7hey5igDX5PUSJpXXVolDhx5xr3b98qb6V8LhhTho48-3y=w2560-h1440-rw" width="200" height="400" /> | <img src="https://play-lh.googleusercontent.com/yKsTkmgGmul4uZ9JRQmtNYeFDHPJ9MlsQNAgLgJTwwmPhHlWbV7_Qcg7ukD9RrIg6A=w2560-h1440-rw" width="200" height="400" />
